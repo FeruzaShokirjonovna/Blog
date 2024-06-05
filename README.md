@@ -160,3 +160,122 @@ After decided on the strategy, the scope plane was carefully created.
 ## **5.2. Testing**
 
 ## **5.3. Bugs**
+
+# **6. Deployment**
+
+## **6.1. Transfer of progress from IDE**
+
+- **Task :** To ensure regular commitments are done to avoid any data/progress loss.
+- **Method :** 
+   - commands `git add [filename]` was used to add specific file to staging area, alternatively command `git add .` was used to add all changed files to staging area
+   - command `git commit -m "[commit description]"` was used to add commitments into queue
+   - command `git push` was used to push all commitments to remote repository on GitHub
+
+## **6.2. Offline cloning**
+
+- **Task :** To use repository on local machine.
+- **Method :** 
+  - Navigate to GitHub and follow `Code -> HTTPS -> Copy button` . after those steps open your local coding environment and type `git clone [copied link]`.
+
+## **6.3. Deployment Prerequisites**
+
+### **6.3.1. Gmail**
+
+- **Task :** Obtain GMail username and app key (password) - GMAIL SMTP to be used as mailing client.
+- **Method :** 
+  - Navigate to `https://accounts.google.com/` and follow all steps for registering new email address
+  - Login to google with newly created email address and password.
+  - Navigate to `https://accounts.google.com/` once again
+  - Select `Security > Signing in to Google > 2-Step Verification > App Passwords`
+  - Enter a name of the app password and select `Generate`
+  - You will get app password in format `xxxx xxxx xxxx xxxx`
+  - Update `settings.py` in the project directory
+
+### **6.3.2. CI DB**
+
+- **Task :** Obtain database URL to be used as project's database.
+- **Method :** 
+  - Select one of the DB providers, I did use [CI DB](https://dbs.ci-dbs.net/)
+  - Navigate to `https://dbs.ci-dbs.net/` and follow all steps for registering new account
+  - Login to CI DB with newly created account credentials
+  - Navigate to `+ Create New Instance`
+  - Select `Name, Plan and Region`
+  - Confirm the instance by pressing `Create Instance`
+  - Obtain database URL in format 
+  - Update `settings.py` in the project directory
+
+### **6.3.3. Cloudinary**
+
+- **Task :** Obtain Cloudinary URL to be used as project's static storage
+- **Method :** 
+  - Select one of the static storage providers, I did use [Cloudinary](https://console.cloudinary.com/)
+  - Navigate to `https://console.cloudinary.com/` and follow all steps for registering new account
+  - Login to Cloudinary with newly created account credentials
+  - Navigate to `+ Add a new environment`
+  - Confirm your selection
+  - Obtain Cloudinary URL in format `cloudinary://USER:PASSKEY@ENVIRONMENT`
+  - Update `settings.py` in the project directory
+
+### **6.3.4. Settings.py & file-tree**
+
+- **Task :** Prepare `settings.py` adn file-tree for deployment 
+- **Method :** 
+  - Create file `env.py` to keep all sensitive information in
+  - See example of `env.py` file *( Appendix 48 )*
+  - Add `env.py` into `.gitignore` file to ensure this fill won't be uploaded to GitHub
+  - update `settings.py` with `import os`
+  - for every secured variable add code `VARIABLE = os.environ.get("VARIABLE")`
+  - ensure this process for Gmail, ElephantSQL, Cloudinary, DEBUG and Django Secret Key
+  - update default database settings in `settings.py` with `
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }`
+  - update default static settings in `settings.py` with `
+  STATIC_URL = "/static/"
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+MEDIA = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+  `
+  - update email settings in `settings.py` with `EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True`
+  - Migrate - your database models to Database using `python manage.py migrate` command
+  - Create directories `.\static` and `.\templates`
+  - commit and push changes to GitHub 
+
+### **6.4. Deployment to Heroku**
+
+- **Task :** To ensure users are able to view live version of **Aneta's Glimmer** project.
+- **Method :** 
+  - Register & Log In with heroku
+  - Navigate to `New > Create New App`
+  - Select Name of the app that is unique
+  - Navigate to `Settings > Reveal Config Vars`
+  - Add all variables from `env.py` to ConfigVars of Heroku App 
+  - Add variable pair `PORT:8000`
+  - For the testing deployment add variable pair `COLLECT_STATIC:1`
+  - Add the Heroku app URL into `ALLOWED HOSTS` in `settings.py`
+  - In root create file name `Procfile`
+  - Navigate to `Deploy > GitHub > Connect`
+  - Navigate to `Deploy > Deploy Branch`
+  - Optionally, you can enable automatic deploys
+  - See the deployment log - if the deployment was successful, you will be prompted with option to see live page  
+
+## **7. Technologies & Credits**
+
+### 7.1. Technologies used to develop and deploy this project
+
+### 7.3. Requirements.txt
+
+### 7.3. Credits
