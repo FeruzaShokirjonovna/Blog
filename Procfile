@@ -1,1 +1,1 @@
-web: gunicorn babycare.wsgi
+web: gunicorn babycare.wsgi 
