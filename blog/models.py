@@ -19,3 +19,21 @@ class Post(models.Model):
     downvotes = models.ManyToManyField(User, related_name='blogpost_downvote', blank=True)
     favorites = models.ManyToManyField(User, related_name='blogpost_favorite', blank=True)
     read_later = models.ManyToManyField(User, related_name='blogpost_read_later', blank=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.title
+
+    def number_of_upvotes(self):
+        return self.upvotes.count()
+
+    def number_of_downvotes(self):
+        return self.downvotes.count()
+
+    def number_of_favorites(self):
+        return self.favorites.count()
+
+    def number_of_read_later(self):
+        return self.read_later.count()
