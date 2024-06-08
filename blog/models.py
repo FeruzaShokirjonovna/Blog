@@ -5,9 +5,10 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
 
+# Post Model
 class Post(models.Model):
-    title = models.CharField(max_lenth=200, unique=True)
-    slug = models.SlugField(max_lenth=200, unique=True)
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
@@ -53,3 +54,21 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
+
+# Upvote/downvote
+
+class Vote(models.Model):
+    UPVOTE = 1
+    DOWNVOTE = -1
+
+    VOTE_CHOICES = [
+        (UPVOTE, 'Upvote'),
+        (DOWNVOTE, 'Downvote'),
+    ]
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='votes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vote = models.IntegerField(choices=VOTE_CHOICES)
+
+    class Meta:
+        unique_together = ('post', 'user')
