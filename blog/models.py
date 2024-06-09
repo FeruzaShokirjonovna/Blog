@@ -32,9 +32,7 @@ class Post(models.Model):
     def number_of_downvotes(self):
         return self.downvotes.count()
 
-    def number_of_read_later(self):
-        return self.read_later.count()
-
+    
 # Comment Models
 
 class Comment(models.Model):
