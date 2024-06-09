@@ -113,3 +113,38 @@ body {
     margin-left: 5%;
     color: var(--text-light);
 }
+
+.btn-signup {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: var(--white);
+}
+
+.link {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.link:hover,
+.link:active {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.btn-upvote {
+    color: red;
+    border: none;
+    background: transparent;
+}
+
+.btn-upvote:hover,
+.btn-upvote:active {
+    color: red;
+    background: transparent;
+    border: none;
+}

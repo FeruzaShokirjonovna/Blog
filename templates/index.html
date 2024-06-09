@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for post in post_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <!-- Image Container-->
+                            <div class="image-container">
+                                {% if "placeholder" in post.featured_image.url %}
+                                <img class="card-img-top"
+                                    src="https://www.pexels.com/photo/selective-focus-photography-of-woman-carrying-her-cute-baby-3398675/"
+                                    alt="photography-of-woman-carrying-her-cute-baby">
+                                {% else %}
+                                <img class="card-img-top" src="{{post.featured_image.url}}" alt="image">
+                                {% endif %}
+                                <div class="image-flash">
+                                    <div class="author">Written by: {{ post.author }}</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{%endblock%}
