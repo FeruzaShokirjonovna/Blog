@@ -1,23 +1,21 @@
-from django.shortcuts import render, get_object_or_404
-from django.views import generic, View
-from .models import Post, ReadLater
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.views import View
+from .models import Post, ReadLater
 
+class PostList(View):
+    def get(self, request, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        return render(request, 'index.html', {'posts': queryset})
 
-class PostList(generic.ListView):
-    model = Post
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
-    template_name = 'index.html'
-    paginate_by = 5
-
- class PostDetail(View):
+class PostDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by('created_on')
         upvoted = False
         downvoted = False
+
         if post.upvotes.filter(id=self.request.user.id).exists():
             upvoted = True
         if post.downvotes.filter(id=self.request.user.id).exists():
@@ -30,12 +28,13 @@ class PostList(generic.ListView):
                 "post": post,
                 "comments": comments,
                 "upvoted": upvoted,
-                "downvoted": downvoted
+                "downvoted": downvoted,
+                "number_of_upvotes": post.number_of_upvotes(),
+                "number_of_downvotes": post.number_of_downvotes(),
             }
         )
 
 def read_later(request):
-    # Enables logged in users to bookmark the page
     if request.user.is_authenticated:
         read_later_posts = ReadLater.objects.filter(user=request.user)
         return render(request, 'read_later.html', {'read_later_posts': read_later_posts})
@@ -43,7 +42,26 @@ def read_later(request):
         return render(request, 'read_later.html', {'read_later_posts': []})
 
 def add_to_read_later(request, post_id):
-    # Adds functionality to bookmark Posts
     post = get_object_or_404(Post, id=post_id)
     ReadLater.objects.get_or_create(user=request.user, post=post)
-    return HttpResponseRedirect(reverse('post_detail', args=[post.slug]))
+    return redirect(reverse('post_detail', args=[post.slug]))
+
+def post_upvote(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.upvotes.filter(id=request.user.id).exists():
+        post.upvotes.remove(request.user)
+    else:
+        # Ensure user can only upvote or downvote, not both
+        post.upvotes.add(request.user)
+        post.downvotes.remove(request.user)  
+    return redirect(reverse('post_detail', kwargs={'slug': post.slug}))
+
+def post_downvote(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.downvotes.filter(id=request.user.id).exists():
+        post.downvotes.remove(request.user)
+    else:
+        # Ensure user can only upvote or downvote, not both
+        post.downvotes.add(request.user)
+        post.upvotes.remove(request.user)  
+    return redirect(reverse('post_detail', kwargs={'slug': post.slug}))
