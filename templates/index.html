@@ -19,13 +19,22 @@
                                     src="https://www.pexels.com/photo/selective-focus-photography-of-woman-carrying-her-cute-baby-3398675/"
                                     alt="photography-of-woman-carrying-her-cute-baby">
                                 {% else %}
-                                <img class="card-img-top" src="{{post.featured_image.url}}" alt="image">
+                                <img class="card-img-top" src="{{ post.featured_image.url }}" alt="image">
                                 {% endif %}
                                 <div class="image-flash">
                                     <div class="author">Written by: {{ post.author }}</div>
                                 </div>
                             </div>
-
+                            <!--Post title and excert-->
+                            <a href="#" class="post-link">
+                                <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text">{{ post.excert }}</p>
+                            </a>
+                            <hr />
+                            <p class="card-text text-muted h6">{{ post.created_on }} <i
+                                    class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }} <i class="fa-solid fa-thumbs-down"></i>{{ post.number_of_downvotes }} 
+                                    <i class="far fa-heart"></i>{{ post.number_of_favorites }} <i class="fa-solid fa-bookmark"></i>{{ post.number_of_read_later}}
+                                </p>
                         </div>
                     </div>
                 </div>
@@ -40,5 +49,6 @@
     </div>
 
 </div>
-
+<!--Font awesome kit-->
+<script src="https://kit.fontawesome.com/4eb9e18dd0.js" crossorigin="anonymous"></script>
 {%endblock%}
