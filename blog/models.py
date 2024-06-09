@@ -18,7 +18,6 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     upvotes = models.ManyToManyField(User, related_name='blogpost_upvote', blank=True)
     downvotes = models.ManyToManyField(User, related_name='blogpost_downvote', blank=True)
-    favorites = models.ManyToManyField(User, related_name='blogpost_favorite', blank=True)
     read_later = models.ManyToManyField(User, related_name='blogpost_read_later', blank=True)
 
     class Meta:
@@ -32,9 +31,6 @@ class Post(models.Model):
 
     def number_of_downvotes(self):
         return self.downvotes.count()
-
-    def number_of_favorites(self):
-        return self.favorites.count()
 
     def number_of_read_later(self):
         return self.read_later.count()
@@ -72,3 +68,16 @@ class Vote(models.Model):
 
     class Meta:
         unique_together = ('post', 'user')
+
+# Read Later Model
+
+class ReadLater(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    added_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.post.title}"

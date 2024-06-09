@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <h1>Posts Bookmarked for Later</h1>
+    {% if read_later_posts %}
+        <ul>
+            {% for item in read_later_posts %}
+                <li><a href="{% url 'post_detail' item.post.slug %}">{{ item.post.title }}</a> - Added on {{ item.added_on }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not bookmarked any posts to read later.</p>
+    {% endif %}
+</div>
+{%endblock%}

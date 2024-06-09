@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Post
+from .models import Post, ReadLater
 
 
 class PostList(generic.ListView):
@@ -9,10 +9,9 @@ class PostList(generic.ListView):
     template_name = 'index.html'
     paginate_by = 5
     
-def favourites(request):
-    # Logic to get the favourite posts for the user
-    return render(request, 'favourites.html')
-
 def read_later(request):
-    # Logic to get the posts bookmarked for later read
-    return render(request, 'read_later.html')
+    if request.user.is_authenticated:
+        read_later_posts = ReadLater.objects.filter(user=request.user)
+        return render(request, 'read_later.html', {'read_later_posts': read_later_posts})
+    else:
+        return render(request, 'read_later.html', {'read_later_posts': []})
