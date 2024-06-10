@@ -25,15 +25,15 @@ body {
 }
 
 .light-bg {
-    background-color: var(--bg-color);
+    background-color: var(--primary-color);
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #9eb7d2;
 }
 
 .main-bg {
-    background-color: var(--primary-color);
+    background-color: var(--bg-color);
 }
 
 /*Image Style*/
