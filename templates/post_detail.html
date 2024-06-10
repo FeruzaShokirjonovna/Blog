@@ -36,9 +36,41 @@
                 <div class="row">
 
                     <div class="col-1">
-                        <!-- The number of votes goes before the closing strong tag -->
-                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_upvotes }} </strong>
-                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.number_of_downvotes }} </strong>
+                        <strong>
+                            {% if user.is_authenticated %}
+                            <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if upvoted %}
+
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
+                                        class="fas fa-thumb-up"></i></button>
+
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
+                                        class="far fa-thumb-up"></i></button>
+
+                                {% endif %}
+                            </form>
+                            <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if downvoted %}
+
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
+                                        class="fas fa-thumb-down"></i></button>
+
+                                {% else %}
+                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
+                                        class="far fa-thumb-down"></i></button>
+
+                                {% endif %}
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
+                            <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
+                            {% endif %}
+                            <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
+                            <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
+                        </strong>
+                        
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
