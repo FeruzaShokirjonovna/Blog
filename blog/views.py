@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
 from .models import Post, ReadLater
+from .forms import CommentForm
 
 class PostList(View):
     def get(self, request, *args, **kwargs):
@@ -31,7 +32,8 @@ class PostDetail(View):
                 "downvoted": downvoted,
                 "number_of_upvotes": post.number_of_upvotes(),
                 "number_of_downvotes": post.number_of_downvotes(),
-            }
+                "comment_form": CommentForm()
+            },
         )
 
 def read_later(request):
