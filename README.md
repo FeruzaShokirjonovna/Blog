@@ -5,8 +5,10 @@
 - **Description :** This Portfolio Project 4 website called **Baby Care** is a site of imaginary blog, offers news in form of blog from about being Mom and useful tips for mothers. The site is presenting to its visitors with variety of details as blog style functions.
 - **Key project goal :** To familiarize visitors of this page with **Baby Care** blog
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are Mothers that are using search engines for baby care tips and tricks, advices.
-- **Live version :** Live version of **Baby Care** page can be viewed at []().
+- **Live version :** Live version of **Baby Care** page can be viewed at [Baby Care](https://babycare-6f68f42d9b15.herokuapp.com/).
 - **Developer :** [Feruza Orifjonova](https://github.com/FeruzaShokirjonovna/)
+
+![Mockup]()
 
 ---
 
@@ -87,19 +89,40 @@
 ## **3.1. The Strategy Plane**
 
 ### **3.1.1 The Idea**
+
+The Baby Care Blog is a dedicated platform aimed at providing comprehensive, reliable, and engaging content for new and expectant parents. Our blog covers a wide range of topics, including infant health, parenting tips, developmental milestones, product reviews, and personal stories from parents. The goal is to create a supportive community where parents can find valuable information and share their experiences.
+
 ### **3.1.2 The Ideal User**
+
+The target audience are young parents and couples planning to have a baby
+
+- Ideal user can upvote or downvote on posts
+- Ideal user can comment
+
 ### **3.1.3 Site Goals**
+
+- Inform and Educate: Provide accurate and up-to-date information on baby care and parenting.
+- Engage and Support: Create a community where parents can connect, share experiences, and offer mutual support.
+
 ### **3.1.4 Epics**
 
-As a thought process of the strategy plane, epics were created and utilized. Please see below the detail list of epics with links, or a link to the project's [Kanban Board](https://github.com/) *(appendix 1)*. Those Epics were further sliced into USER STORIES.
-
-*Appendix 1 - Kanban Board*
+As a thought process of the strategy plane, 9 epics were created and utilized. Please see below the detail list of epics with links, or a link to the project's [Kanban Board](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D). Those Epics were further sliced into USER STORIES.
 
 ![Kanban Board]()
 
+- [Epic 1: Environment Configuration](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66288419)
+- [Epic 2: Database Models](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66676466)
+- [Epic 3: Admin Panel](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66676590)
+- [Epic 4: Post Views](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66676851)
+- [Epic 5: User Authentication](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66716110)
+- [Epic 6: Post Details View](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66795769)
+- [Epic 7: Comments](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66796667)
+- [Epic 8: Additional Features](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66797020)
+- [Epic 9: Testing and Validation](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66797478)
+
 ### **3.1.5 User stories**
 
-User stories were created based on the Epics. Each user story uses the MoSCoW prioritization technique. Each user story was also estimated for relative effort required to implement satisfactory result of acceptance criteria. My Story points are using a sequence inspired by the Fibonacci numbers (1, 2, 3, 5, 8, 13, etc.). This reflects the uncertainty and variability in estimating larger tasks. The idea was to easy distinguish the initial size of user story using this non-linear sequence. Each user story on the [Kanban Board](https://github.com/users/tomik-z-cech/projects/1/views/1) was given 2 labels (MoSCoW and Story Points).
+User stories were created based on the Epics. Each user story uses the MoSCoW prioritization technique. Each user story on the [Kanban Board](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Labels%22%5D) was given labels (MoSCoW).
 
 
 **MoSCoW prioritization technique stands for**:
@@ -112,11 +135,6 @@ User stories were created based on the Epics. Each user story uses the MoSCoW pr
 
 **Won't-Have**: Features that are explicitly excluded from the project scope.
 
-The **total** Story Points in the project is .
-- **Must-Have** :  story points
-- **Should-Have** :  story points
-- **Could-Have** :  story points
-- **Wont-Have** :  story points
 
 ### List of user stories sorted by Epic :
 
@@ -125,6 +143,9 @@ The **total** Story Points in the project is .
 After decided on the strategy, the scope plane was carefully created.
 
 ### 3.2.1. Features to be implemented
+
+- **Search** : Search bar for users is provided on landing page so users can find specific News Posts, Styles or Team members.
+- **Comment**: Allow users to reply directly to another comment. Replies would then be shown directly underneath that comment as a conversation.
 
 ## **3.3. The Structure Plane**
 
