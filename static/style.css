@@ -148,3 +148,16 @@ body {
     background: transparent;
     border: none;
 }
+
+.btn-downvote {
+    color: gray;
+    border: none;
+    background: transparent;
+}
+
+.btn-downvote:hover,
+.btn-downvote:active {
+    color: gray;
+    background: transparent;
+    border: none;
+}
