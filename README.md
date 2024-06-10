@@ -297,6 +297,29 @@ EMAIL_USE_TLS = True`
 
 ### 7.1. Technologies used to develop and deploy this project
 
+- [**Django/Jinja**](https://docs.djangoproject.com/en/5.0/) - main Framework of the project
+- [**Python**](https://www.python.org/) - main BackEnd programming language of the project
+- [**HTML**](https://developer.mozilla.org/en-US/docs/Web/HTML) - templates programming language of this project (FrontEnd)
+- [**CSS**](https://developer.mozilla.org/en-US/docs/Web/CSS) - styling the project via external CSS file `./static/css/style.css`
+- [**Java Script**](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - dynamic templates programming language of this project (FrontEnd)
+- [**jQuery**](https://api.jquery.com/) - API for JavaScript - dynamic templates programming language of this project (FrontEnd)
+- [**Bootstrap v. 5.3**](https://getbootstrap.com/) - styling framework used in this project (FrontEnd)
+- [**Heroku**](https://heroku.com) - to deploy this project
+- [**Balsamiq**](https://balsamiq.com/support/) - to create wireframes
+- [**Git**](https://git-scm.com/doc) - to make commitments of progress and push the results back to GitHub
+- [**GitHub**](https://github.com/) - to keep the track of version control
+- [**Gitpod**](https://gitpod.com/) - online IDE - CodeAnywhere was initially used to create this project
+
+
 ### 7.3. Requirements.txt
 
 ### 7.3. Credits
+- [**Precious Ijege**](https://www.linkedin.com/in/precious-ijege/?originalSubdomain=uk) - massive shout-out for keeping me in the right direction
+- [**Tomáš Kubánčik**](https://ie.linkedin.com/in/tomas-kubancik?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile) - thank you for all the support
+
+- [**Google Fonts**](https://fonts.google.com/) - used for picking the best typography
+- [**PostgresSQL**](https://www.postgressql.com/) - used as a database storage
+- [**Cloudinary**](https://console.cloudinary.com/) - used as a storage of static files
+- [**FavIcon.io**](https://favicon.io/favicon-converter/) - used to compress favicon
+- [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
+
