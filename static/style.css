@@ -33,7 +33,7 @@ body {
 }
 
 .main-bg {
-    background-color: var(--white);
+    background-color: var(--primary-color);
 }
 
 /*Image Style*/
