@@ -5,7 +5,7 @@
 - **Description :** This Portfolio Project 4 website called **Baby Care** is a site of imaginary blog, offers news in form of blog from about being Mom and useful tips for mothers. The site is presenting to its visitors with variety of details as blog style functions.
 - **Key project goal :** To familiarize visitors of this page with **Baby Care** blog
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are Mothers that are using search engines for baby care tips and tricks, advices.
-- **Live version :** Live version of **Baby Care** page can be viewed at [Baby Care](https://babycare-6f68f42d9b15.herokuapp.com/).
+- **Live version :** Live version of **Baby Care** page can be viewed at [Baby Care](https://babycare.herokuapp.com/).
 - **Developer :** [Feruza Orifjonova](https://github.com/FeruzaShokirjonovna/)
 
 ![Mockup]()
@@ -108,7 +108,7 @@ The target audience are young parents and couples planning to have a baby
 
 As a thought process of the strategy plane, 9 epics were created and utilized. Please see below the detail list of epics with links, or a link to the project's [Kanban Board](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D). Those Epics were further sliced into USER STORIES.
 
-![Kanban Board]()
+![Kanban Board](/docs/kanban_board.png)
 
 - [Epic 1: Environment Configuration](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66288419)
 - [Epic 2: Database Models](https://github.com/users/FeruzaShokirjonovna/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D&pane=issue&itemId=66676466)
@@ -153,15 +153,27 @@ After decided on the strategy, the scope plane was carefully created.
 
 ### 3.3.2. Database Schemas
 
+Following schema shows intended database structure:
+
+![Database schema](/docs/database_diagram.png)
+
 ## **3.4. The Skeleton Plane**
 
 ### 3.4.1. Wire-frames
 
 ## **3.5. The Surface Plane**
 
-### 3.5.1. Logo
-
 ### 3.5.2. Color pallette
+
+- Primary Color (#763ae0): This vibrant shade of purple is eye-catching and energetic, serving as the primary color to draw attention to important elements on the website
+
+-Secondary Color (#a0d333): This soft green hue complements the primary color palette, bringing a refreshing and natural feel to the design
+
+- Background Color (#FFF5E1): This light cream or ivory tone provides a clean and neutral background for the website, ensuring readability and allowing other colors to stand out effectively.
+
+- Text Dark (#333333): A dark gray color, perfect for body text or any content where readability is crucial.
+
+- Text Light (#767268): A lighter shade of gray, suitable for secondary text or elements where a softer contrast is desired
 
 ### 3.5.3. Fonts
 [Google Fonts](https://fonts.google.com/) site was used to pick the best typography style. The most importance was given to balance between style and readability. As a developer I needed to ensure that all text is displayed clear.
@@ -177,6 +189,9 @@ After decided on the strategy, the scope plane was carefully created.
 # **5. Validation, Testing & Bugs**
 
 ## **5.1. Validation**
+
+Validation is documented separately in [validation.md](/docs/validation.md) file.
+
 
 ## **5.2. Testing**
 
@@ -312,6 +327,19 @@ EMAIL_USE_TLS = True`
 
 
 ### 7.3. Requirements.txt
+
+asgiref==3.8.1 - ASGI reference implementation, providing a specification for asynchronous web servers and applications
+cloudinary==1.40.0 - SDK for interacting with the Cloudinary media management service, facilitating image and video uploads
+dj-database-url==0.5.0 - utility for using database URLs in Django settings, simplifying database configuration
+dj3-cloudinary-storage==0.0.6 - Django storage backend for Cloudinary, allowing seamless integration of Cloudinary as a storage solution for media files
+Django==5.0.6 - framework that encourages rapid development and clean, pragmatic design
+django-allauth==0.63.3 - package providing a set of authentication views, templates, and adapters for handling user registration, authentication, and account management
+django-crispy-forms==1.14.0 - application that lets you easily build and customize crispy forms using Bootstrap styles
+django-summernote==0.8.20.0 - application for integrating the Summernote WYSIWYG editor into Django admin forms
+gunicorn==22.0.0 -  WSGI HTTP server for running Django applications in production
+psycopg2==2.9.9 - PostgreSQL adapter for Python, allowing Python applications to interact with PostgreSQL databases
+pytz==2024.1 - Python library for working with time zones
+sqlparse==0.5.0 - library for parsing SQL statements
 
 ### 7.3. Credits
 - [**Precious Ijege**](https://www.linkedin.com/in/precious-ijege/?originalSubdomain=uk) - massive shout-out for keeping me in the right direction
