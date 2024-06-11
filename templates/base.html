@@ -18,10 +18,10 @@
     <!--Favicon-->
     <link rel="icon" href="{% static 'favicon/favicon.ico' %}">
 
-    
+
     <!-- Bootstrap -->
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
-    
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -51,6 +51,7 @@
                         {% else %}
                         <!-- Handle case where post.id is empty or None -->
                         <span class="nav-link active" aria-current="page">Read Later</span>
+                        
                         {% endif %}
                     </li>
                     <li class="nav-item">

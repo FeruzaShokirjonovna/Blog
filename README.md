@@ -226,7 +226,7 @@ The following custom error pages were created :
 ### **4.2.4. Read Later Page**
 
 - **Template File :** `read_later.html` - extends `base.html`
-- **User :** Enables logged in user to read bookmarked posts.
+- **User :** Enables logged in user to read bookmarked posts. If there is no bookmarked posts, 
 
 ### **4.2.5. Forms**
 
@@ -244,9 +244,11 @@ Validation is documented separately in [validation.md](/docs/validation.md) file
 
 ## **5.2. Testing**
 
-
+Tested for responsiveness manually.
 
 ## **5.3. Bugs**
+
+Bugs is documented separately in [validation.md](/docs/bugs/bugs.md.md) file.
 
 # **6. Deployment**
 
