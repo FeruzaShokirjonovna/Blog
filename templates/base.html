@@ -18,11 +18,11 @@
     <!--Favicon-->
     <link rel="icon" href="{% static 'favicon/favicon.ico' %}">
 
-    <link rel="manifest" href="/site.webmanifest">
+    
     <!-- Bootstrap -->
     <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
     
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -95,7 +95,7 @@
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
         <div class="container">
-            <p class="m-0 text-center text-white">Made by Feruza|2024</p>
+            <p class="m-0 text-center text-white">Made by Feruza | 2024</p>
             <p class="m-0 text-center text-white">Follow us:
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-square ms-3"></i></a>
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter-square ms-3"></i></a>
@@ -109,7 +109,7 @@
     <script>
         setTimeout(function () {
             <!--Misses alert message-->
-            let messages = document.getElementById("msg");
+            let messages = document.getElementById('msg');
             let alert = new bootstrap.Alert(messages);
             alert.close();
         }, 3000);

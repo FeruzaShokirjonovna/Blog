@@ -40,12 +40,12 @@
     - [4.1.2. Footer](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#412-footer)
     - [4.1.3. Favicon](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#413-favicon)
     - [4.1.4. Error Pages](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#414-error-pages)
-    - [4.1.5. Scrollbar](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#415-scroll-bar)
   - [4.2. Main Content](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#42-main-content)
     - [4.2.1. Landing Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#421-landing-page)
-    - [4.2.2. News Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#422-news-page)
-    - [4.2.3. News Detail Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-news-detail-page)
-    - [4.2.12. Forms](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#4212-forms)
+    - [4.2.2.  Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#422-news-page)
+    - [4.2.3. Post Detail Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-post-detail-page)
+    - [4.2.4. Read Later Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-read-later-page)
+    - [4.2.5. Forms](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#4212-forms)
   - [4.3. Future Features](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#43-future-features)
 - [5. Validation, Testing & Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#5-validation-testing--bugs)
   - [5.1. Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#51-validation)
@@ -57,11 +57,7 @@
     - [5.1.6. WAVE Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#516-wave-validation)
     - [5.1.7. Lighthouse](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#517-lighthouse)
   - [5.2. Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#52-testing)
-    - [5.2.1. Table of Content - Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/testing.md#521-table-of-content---testing)
-    - [5.2.2. User stories testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/testing.md#522-user-stories-testing)
-    - [5.2.3. Test Cases](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/testing.md#524-test-cases)
-    - [5.2.4. Viewport Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/testing.md#524-viewport-testing)
-    - [5.2.5. Compatibility Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/testing.md#525-compatibility-testing)
+    
   - [5.3. Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#53-bugs)
     - [5.3.1. Fixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#531-fixed-bugs)
     - [5.3.2. Unfixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#532-unfixed-bugs)
@@ -161,6 +157,9 @@ Following schema shows intended database structure:
 
 ### 3.4.1. Wire-frames
 
+ I created simple ![wireframes](/docs/wireframes.png) for the homepage, and the article detail page. For the registration and login page I was planning to use the default layout, so I omitted wireframes for those pages.
+
+
 ## **3.5. The Surface Plane**
 
 ### 3.5.2. Color pallette
@@ -186,6 +185,56 @@ Following schema shows intended database structure:
 
 ### **4.1.1 Header**
 
+- It is fully responsive and includes the Baby Care blog name on the left and member links and blog slogan on the right.
+
+- The blog name is wrapped in a link and can be used to navigate to the homepage.
+
+- After logging in, the links on the right side are replaced by the Read Later and a log-out button.
+
+### **4.1.2 Footer**
+
+- Every page has a footer at the bottom of the page.
+- The footer shows the copyright text and links to four different social media websites. Each link opens in a new tab.
+
+### **4.1.3 Favicon**
+
+- Every template in this project is equipped with Favicon. This is to ease navigation for user in case of more tabs opened. 
+
+### **4.1.4 Error Pages**
+
+- This project is designed to have custom error pages. In case of user clicks on broken link, submits action that isn't supported or tries to reach certain view without permission, then user isn't completely "cut off" from browsing, instead an error page with header and footer appears and user is informed of the situation.
+
+The following custom error pages were created :
+
+- 403 - Received when user attempts to access a web resource for which they lack the necessary permissions. 
+- 404 - Encountered when the requested web resource by user is not found on the server. 
+- 500 - Displayed when the web server encounters an internal error while processing the request.
+
+## **4.2. Main Content**
+
+### **4.2.1. Landing Page**
+
+- **Template File :** `index.html` - extends `base.html`
+- Contains list of posts.
+- Provides user with all Posts published along with name of creator, date created and a snippet of Post body. Also information of amount of votes and comments is provided to both logged in and not logged in users 
+
+### **4.2.3. News Detail Page**
+
+- **Template File :** `post_detail.html` - extends `base.html`
+- **User :** Provides user with selected Post along with name of creator, date created and full Post body. User sees votes and amount of comments. Logged in user has ability to comment and vote.
+
+### **4.2.4. Read Later Page**
+
+- **Template File :** `read_later.html` - extends `base.html`
+- **User :** Enables logged in user to read bookmarked posts.
+
+### **4.2.5. Forms**
+
+- **App :** `AllAuth` extension
+- **Template File :** `*.html` in `./templates/account` - extends `base.html`
+- **User :** Forms do interact with user. They are designed to be clear and to the point, always in center of the screen. 
+
+
 # **5. Validation, Testing & Bugs**
 
 ## **5.1. Validation**
@@ -194,6 +243,8 @@ Validation is documented separately in [validation.md](/docs/validation.md) file
 
 
 ## **5.2. Testing**
+
+
 
 ## **5.3. Bugs**
 
