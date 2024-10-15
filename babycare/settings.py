@@ -40,6 +40,7 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 
+DEBUG = True
 
 # Application definition
 
