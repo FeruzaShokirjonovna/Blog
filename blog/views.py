@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.views import View
+from django.views import View, generic
 from .models import Post, ReadLater
 from .forms import CommentForm
 
 
-class PostList(View):
-    def get(self, request, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        return render(request, "index.html", {"posts": queryset})
+#class PostList(View):
+    #def get(self, request, *args, **kwargs):
+     #   queryset = Post.objects.filter(status=1)
+     #  return render(request, "index.html", {"posts": queryset})
+class PostList(generic.ListView):
+    queryset = Post.objects.all()
+    template_name = "post_list.html"
 
 
 class PostDetail(View):

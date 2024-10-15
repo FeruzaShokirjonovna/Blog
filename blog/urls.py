@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from . import views
 from .views import (
     PostList,
     PostDetail,
@@ -12,7 +13,7 @@ from .views import (
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path("", PostList.as_view(), name="home"),  # Root URL pattern
+    path('', views.PostList.as_view(), name='home'),
     path(
         "<slug:slug>/", PostDetail.as_view(), name="post_detail"
     ),  # Post Detail
