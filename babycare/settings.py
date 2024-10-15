@@ -54,10 +54,10 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "cloudinary_storage",
     "django.contrib.staticfiles",
-    "cloudinary",
+    "cloudinary_storage",
     "django_summernote",
+    "cloudinary",
     "crispy_forms",
     "blog",
 ]
@@ -121,7 +121,17 @@ WSGI_APPLICATION = "babycare.wsgi.application"
 #    }
 # }
 
-DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL', ''), engine='django.db.backends.postgresql')
+}
+
+#DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

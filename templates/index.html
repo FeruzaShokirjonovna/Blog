@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
 
 <div class="container-fluid">
@@ -16,11 +16,11 @@
                             <!-- Image Container-->
                             <div class="image-container">
                                 {% if "placeholder" in post.featured_image.url %}
-                                <img class="card-img-top"
-                                    src="https://www.pexels.com/photo/selective-focus-photography-of-woman-carrying-her-cute-baby-3398675/"
-                                    alt="photography-of-woman-carrying-her-cute-baby">
+                                <img class="card-img-top" src="{% static 'images/default.jpeg' %}"
+                                  alt="placeholder image">
                                 {% else %}
-                                <img class="card-img-top" src="{{ post.featured_image.url }}" alt="image">
+                                <img class="card-img-top" src=" {{ post.featured_image.url }}"
+                                  alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="image-flash">
                                     <div class="author">Written by: {{ post.author }}</div>
