@@ -4,7 +4,7 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 # Decorator for Posts
-@admin.register(Post)
+@admin.site.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     # Set list of posts displayed by title, slug,status and created date
     list_display = ("title", "slug", "status", "created_on")
@@ -16,7 +16,7 @@ class PostAdmin(SummernoteModelAdmin):
 
 
 # Decorator for Comments
-@admin.register(Comment)
+@admin.site.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     # Set list of posts displayed by title, slug,status and created date
     list_display = ("name", "body", "post", "created_on", "approved")
