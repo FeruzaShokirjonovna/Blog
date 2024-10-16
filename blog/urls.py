@@ -13,8 +13,8 @@ from .views import (
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.test_view, name='home'),
-    #path('', views.PostList.as_view(), name='home'),
+    
+    path('', views.PostList.as_view(), name='home'),
     path(
         "<slug:slug>/", views.PostDetail.as_view(), name="post_detail"
     ),  # Post Detail

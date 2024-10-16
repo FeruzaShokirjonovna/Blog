@@ -3,10 +3,6 @@ from django.urls import reverse
 from django.views import View, generic
 from .models import Post, ReadLater
 from .forms import CommentForm
-from django.http import HttpResponse
-
-def test_view(request):
-    return HttpResponse("Django is routing correctly.")
 
 def home(request):
     return render(request, 'blog/home.html')  # Render the home template in the blog app

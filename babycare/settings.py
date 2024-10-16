@@ -30,7 +30,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR / "templates")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 X_FRAME_ORIGIN = "SAMEORIGIN"
 
@@ -185,6 +185,15 @@ STATIC_URL = "/static/"
 STATICFILES_STORAGE = (
     "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
 )
+# Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL', '')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
