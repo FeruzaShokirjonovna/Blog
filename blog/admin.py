@@ -12,7 +12,7 @@ class PostAdmin(SummernoteModelAdmin):
     # Creates filter
     list_filter = ("status", "created_on")
     prepopulated_fields = {"slug": ("title",)}
-    summernote_fields = "content"
+    summernote_fields = ("content",)
 
 
 # Decorator for Comments

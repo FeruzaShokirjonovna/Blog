@@ -12,7 +12,7 @@ def home(request):
      #   queryset = Post.objects.filter(status=1)
      #  return render(request, "index.html", {"posts": queryset})
 class PostList(generic.ListView):
-    queryset = Post.objects.filter(status=1)
+    queryset = Post.objects.filter(author=2)
     template_name = "post_list.html"
 
 

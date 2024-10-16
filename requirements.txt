@@ -6,7 +6,7 @@ Django==5.0.6
 django-allauth==0.63.3
 django-cloudinary-storage==0.3.0
 django-crispy-forms==1.14.0
-django-summernote==0.8.20.0
+django-summernote~=0.8.20.0
 gunicorn==22.0.0
 psycopg2==2.9.9
 pytz==2024.1
