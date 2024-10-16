@@ -12,3 +12,4 @@ psycopg2==2.9.9
 pytz==2024.1
 sqlparse==0.5.0
 urllib3==1.26.20
+whitenoise==6.5.0
