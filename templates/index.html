@@ -9,7 +9,7 @@
         <div class="col-12 mt-3 left">
             
             <div class="row">
-                {% for post in posts %}
+                {% for post in object_list %}
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
@@ -29,7 +29,7 @@
                             <!--Post title and excert-->
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
-                                <p class="card-text">{{ post.excert }}</p>
+                                <p class="card-text">{{ post.excerpt }}</p>
                             </a>
                             <hr />
                             <p class="card-text text-muted h6">{{ post.created_on }} <i
@@ -53,11 +53,13 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}"
+                  class="page-link">&laquo; PREV</a>
+            </li>
             {% endif %}
             {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-
             {% endif %}
         </ul>
     </nav>

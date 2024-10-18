@@ -45,11 +45,11 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         {% if post.id %}
-                        <a class="nav-link active" aria-current="page" href="{% url 'add_to_read_later' post.id %}">Read
+                        <a class="nav-link" aria-current="page" href="{% url 'add_to_read_later' post.id %}">Read
                             Later</a>
                         {% else %}
                         <!-- Handle case where post.id is empty or None -->
-                        <span class="nav-link active" aria-current="page">Read Later</span>
+                        <span class="nav-link" aria-current="page">Read Later</span>
                         
                         {% endif %}
                     </li>
