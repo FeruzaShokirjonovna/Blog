@@ -31,14 +31,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR / "templates")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 X_FRAME_ORIGIN = "SAMEORIGIN"
 
 ALLOWED_HOSTS = [
-    "babycare-6f68f42d9b15.herokuapp.com",
+    "babycare.herokuapp.com",
     "localhost",
     '.herokuapp.com'
+    '127.0.0.1', '0.0.0.0',
+    '8000-feruzashokirjono-blog-tr13rxfypxm.ws.codeinstitute-ide.net'
 ]
 
 
@@ -110,6 +112,11 @@ TEMPLATES = [
     },
 ]
 
+
+# Configure Crispy Forms Template
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 WSGI_APPLICATION = "babycare.wsgi.application"
 
 
@@ -179,16 +186,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
+STATIC_URL = "/static/"
+
+STATICFILES_STORAGE = (
+    "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
+)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
-STATIC_URL = "/static/"
-STATICFILES_STORAGE = (
-    "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
-)
 
 # SASS compiler configuration
 SASS_COMPILER_STYLE = "compressed"
@@ -196,15 +203,6 @@ SASS_COMPILER_NO_BUILD = True
 SASS_COMPILER_IGNORE = [
     "**/bootstrap/*",
 ]
-# Cloudinary
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
-
-CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL', '')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
