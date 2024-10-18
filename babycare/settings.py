@@ -15,6 +15,7 @@ import os
 import dj_database_url
 from django.contrib.messages import constants as messages
 
+# Import enviroment variables from env.py, if the file exists
 if os.path.isfile("env.py"):
     import env
 
@@ -36,7 +37,6 @@ X_FRAME_ORIGIN = "SAMEORIGIN"
 
 ALLOWED_HOSTS = [
     "babycare-6f68f42d9b15.herokuapp.com",
-    "8000-feruzashokirjono-blog-ktpnfiw04sx.ws-eu114.gitpod.io",
     "localhost",
     '.herokuapp.com'
 ]
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     "django_summernote",
     "cloudinary",
+    
     "crispy_forms",
     "blog",
 ]
@@ -77,7 +78,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "alert-danger",
 }
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+# Configure Crispy Forms Template
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -114,24 +116,26 @@ WSGI_APPLICATION = "babycare.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgres',
-#        'NAME': BASE_DIR / 'db.postgres',
-#    }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgres',
+        'NAME': BASE_DIR / 'front_boxer_squid_914839',
+    }
+ }
 
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL', ''), engine='django.db.backends.postgresql')
 }
 
+#DATABASES = {
+#    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+#}
+
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com"
 ]
-
-#DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
 
@@ -185,6 +189,13 @@ STATIC_URL = "/static/"
 STATICFILES_STORAGE = (
     "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
 )
+
+# SASS compiler configuration
+SASS_COMPILER_STYLE = "compressed"
+SASS_COMPILER_NO_BUILD = True
+SASS_COMPILER_IGNORE = [
+    "**/bootstrap/*",
+]
 # Cloudinary
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
