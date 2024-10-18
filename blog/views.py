@@ -4,16 +4,17 @@ from django.views import View, generic
 from .models import Post, ReadLater
 from .forms import CommentForm
 
-def home(request):
-    return render(request, 'blog/home.html')  # Render the home template in the blog app
+#def home(request):
+#    return render(request, 'blog/home.html')  # Render the home template in the blog app
 
 #class PostList(View):
-    #def get(self, request, *args, **kwargs):
-     #   queryset = Post.objects.filter(status=1)
-     #  return render(request, "index.html", {"posts": queryset})
+#    def get(self, request, *args, **kwargs):
+#       queryset = Post.objects.filter(status=1)
+#      return render(request, "index.html", {"posts": queryset})
 class PostList(generic.ListView):
-    queryset = Post.objects.filter(author=2)
-    template_name = "post_list.html"
+    queryset = Post.objects.filter(author=1)
+    template_name = "index.html"
+    paginate_by = 6
 
 
 class PostDetail(View):
