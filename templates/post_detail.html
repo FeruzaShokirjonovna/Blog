@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 
@@ -61,14 +61,14 @@
                                         class="far fa-thumb-down"></i></button>
 
                                 {% endif %}
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
-                            <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
-                            {% endif %}
-                            <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
-                            <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
+                                {% else %}
+                                <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
+                                <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
+                                {% endif %}
+                                <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
+                                <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
                         </strong>
-                        
+
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -86,47 +86,33 @@
             <hr>
         </div>
     </div>
+    <!-- Displaying Comments -->
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Comments:</h3>
             <div class="card-body">
                 <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
+                <div class="p-2 comments
+          {% if not comment.approved and comment.author == user %}
+          faded{% elif not comment.approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                        {{ comment.name }}
-                        <span class=" text-muted font-weight-normal">
-                            <!-- The comment's created date goes here -->
+                        {{ comment.author }}
+                        <span class="font-weight-normal">
                             {{ comment.created_on }}
                         </span> wrote:
                     </p>
-                    <!-- The body of the comment goes before the | -->
-                    {{ comment.body | linebreaks }}
+                    <div id="comment{{ comment.id }}">
+                        {{ comment.body | linebreaks }}
+                    </div>
+                    {% if not comment.approved and comment.author == user %}
+                    <p class="approval">
+                        This comment is awaiting approval
+                    </p>
+                    {% endif %}
                 </div>
                 <!-- Our for loop ends here -->
                 {% endfor %}
-            </div>
-        </div>
-        <div class="col-md-4 card mb-4  mt-3 ">
-            <div class="card-body">
-                <!-- Comment Section -->
-                {% if commented %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting approval
-                </div>
-                {% else %}
-                {% if user.is_authenticated %}
-
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% endif %}
-                {% endif %}
             </div>
         </div>
     </div>
