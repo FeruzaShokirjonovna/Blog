@@ -42,6 +42,7 @@ class PostDetail(View):
                 "number_of_upvotes": post.number_of_upvotes(),
                 "number_of_downvotes": post.number_of_downvotes(),
                 "comment_form": CommentForm(),
+                "Medical Expert": "Dr.Swift"
             },
         )
 

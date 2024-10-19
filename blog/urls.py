@@ -23,15 +23,15 @@ urlpatterns = [
     ),  # Read Later URL pattern
     # Add to Read Later URL pattern
     path(
-        "add_to_read_later/<int:post_id>/",
+        "add_to_read_later/<slug:post_slug>/",
         add_to_read_later,
         name="add_to_read_later",
     ),
     path(
-        "post/<int:post_id>/upvote/", post_upvote, name="post_upvote"
+        "post/<slug:slug>/upvote/", views.post_upvote, name="post_upvote"
     ),  # Post upvote URL pattern
     path(
-        "post/<int:post_id>/downvote/", post_downvote, name="post_downvote"
+        "post/<slug:post_slug>/downvote/", views.post_downvote, name="post_downvote"
     ),  # Post downvote URL pattern
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]
