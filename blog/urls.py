@@ -33,6 +33,8 @@ urlpatterns = [
     path(
         "post/<slug:post_slug>/downvote/", views.post_downvote, name="post_downvote"
     ),  # Post downvote URL pattern
+    path('<slug:slug>/edit_comment/<int:comment_id>',
+         views.comment_edit, name='comment_edit'),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]
 
