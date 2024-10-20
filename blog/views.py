@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse
 from django.views import View, generic
-from .models import Post, ReadLater
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from .models import Post, ReadLater, Comment
 from .forms import CommentForm
 
 #def home(request):
@@ -22,6 +24,7 @@ class PostDetail(View):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by("created_on")
+        comment_form = CommentForm()
         upvoted = False
         downvoted = False
 
@@ -41,8 +44,8 @@ class PostDetail(View):
                 "downvoted": downvoted,
                 "number_of_upvotes": post.number_of_upvotes(),
                 "number_of_downvotes": post.number_of_downvotes(),
-                "comment_form": CommentForm(),
-                "Medical Expert": "Dr.Swift"
+                "comment_form": comment_form,
+                
             },
         )
 
@@ -58,16 +61,23 @@ class PostDetail(View):
         if post.downvotes.filter(id=self.request.user.id).exists():
             downvoted = True
 
-        comment_form = CommentForm(data=request.POST)
-
-        if comment_form.is_valid():
-            comment_form.instance.email = request.user.email
-            comment_form.instance.name = request.user.username
-            Comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.save()
-        else:
-            comment_form = CommentForm()
+        if request.method == "POST":
+            print("Received a POST request")
+            comment_form = CommentForm(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.post = post
+                comment.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Comment submitted and awaiting approval'
+                )
+            comment_form = CommentForm(data=request.POST)
+            print("About to render template")
+                #return redirect('post_detail', slug=post.slug)
+            #else:
+                #messages.error(request, 'There was an error submitting your comment.')
 
         return render(
             request,
@@ -75,16 +85,38 @@ class PostDetail(View):
             {
                 "post": post,
                 "comments": comments,
-                "commented": True,
+                "commented": False,
                 "upvoted": upvoted,
                 "downvoted": downvoted,
                 "number_of_upvotes": post.number_of_upvotes(),
                 "number_of_downvotes": post.number_of_downvotes(),
-                "comment_form": CommentForm(),
+                "comment_form": comment_form,
             },
         )
 
+def comment_edit(request, slug, comment_id):
+    """
+    view to edit comments
+    """
+    if request.method == "POST":
 
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+    
 def read_later(request):
     if request.user.is_authenticated:
         read_later_posts = ReadLater.objects.filter(user=request.user)
@@ -101,7 +133,7 @@ def add_to_read_later(request, post_id):
     return redirect(reverse("post_detail", args=[post.slug]))
 
 
-def post_upvote(request, post_id):
+def post_upvote(request, post_slug):
     post = get_object_or_404(Post, id=post_id)
     if post.upvotes.filter(id=request.user.id).exists():
         post.upvotes.remove(request.user)
@@ -112,8 +144,8 @@ def post_upvote(request, post_id):
     return redirect(reverse("post_detail", kwargs={"slug": post.slug}))
 
 
-def post_downvote(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
+def post_downvote(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug)
     if post.downvotes.filter(id=request.user.id).exists():
         post.downvotes.remove(request.user)
     else:
