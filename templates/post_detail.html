@@ -35,40 +35,40 @@
                 <div class="row">
 
                     <div class="col-1">
-                        <strong>
-                            {% if user.is_authenticated %}
-                            <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
-                                {% csrf_token %}
-                                {% if upvoted %}
 
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
-                                        class="fas fa-thumb-up"></i></button>
+                        {% if user.is_authenticated %}
+                        <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
+                            {% csrf_token %}
+                            {% if upvoted %}
 
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
-                                        class="far fa-thumb-up"></i></button>
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
+                                    class="fas fa-thumb-up"></i></button>
 
-                                {% endif %}
-                            </form>
-                            <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
-                                {% csrf_token %}
-                                {% if downvoted %}
+                            {% else %}
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
+                                    class="far fa-thumb-up"></i></button>
 
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
-                                        class="fas fa-thumb-down"></i></button>
+                            {% endif %}
+                        </form>
+                        <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
+                            {% csrf_token %}
+                            {% if downvoted %}
 
-                                {% else %}
-                                <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
-                                        class="far fa-thumb-down"></i></button>
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
+                                    class="fas fa-thumb-down"></i></button>
 
-                                {% endif %}
-                                {% else %}
-                                <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
-                                <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
-                                {% endif %}
-                                <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
-                                <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
-                        </strong>
+                            {% else %}
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
+                                    class="far fa-thumb-down"></i></button>
+
+                            {% endif %}
+                            {% else %}
+                            <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
+                            <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
+                            {% endif %}
+                            <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
+                            <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
+
 
                     </div>
                     <div class="col-1">
@@ -106,12 +106,12 @@
                     <div id="comment{{ comment.id }}">
                         {{ comment.body | linebreaks }}
                     </div>
-                    {% if not comment.approved and comment.author == user %}
+                    {% if not comment.approved and comment.author == name %}
                     <p class="approval">
                         This comment is awaiting approval
                     </p>
                     {% endif %}
-                    {% if user.is_authenticated and comment.author == user %}
+                    {% if user.is_authenticated and comment.author == name %}
                     <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
                     <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
                     {% endif %}
@@ -139,28 +139,24 @@
     </div>
 </div>
 <!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1"
-  aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"
-          id="deleteModalLabel">Delete comment?</h5>
-        <button type="button" class="btn-close"
-          data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete your comment?
-        This action cannot be undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-bs-dismiss="modal">Close</button>
-        <a id="deleteConfirm" href="#" class="btn
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn
           btn-danger">Delete</a>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock content %}
 

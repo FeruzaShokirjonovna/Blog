@@ -23,7 +23,7 @@
                                   alt="{{ post.title }}">
                                 {% endif %}
                                 <div class="image-flash">
-                                    <div class="author">Written by: {{ post.author }}</div>
+                                    <div class="author">By: {{ post.author }}</div>
                                 </div>
                             </div>
                             <!--Post title and excert-->
@@ -31,7 +31,7 @@
                                 <h3 class="card-title">{{ post.title }}</h3>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
-                            <hr />
+                            
                             <p class="card-text text-muted h6">{{ post.created_on }} <i
                                     class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }} <i
                                     class="fa-solid fa-thumbs-down"></i>{{ post.number_of_downvotes }}

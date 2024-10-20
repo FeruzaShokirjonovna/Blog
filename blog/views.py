@@ -69,16 +69,14 @@ class PostDetail(View):
                 comment.author = request.user
                 comment.post = post
                 comment.save()
-                messages.add_message(
-                    request, messages.SUCCESS,
-                    'Comment submitted and awaiting approval'
-                )
-            comment_form = CommentForm(data=request.POST)
-            print("About to render template")
-                #return redirect('post_detail', slug=post.slug)
-            #else:
-                #messages.error(request, 'There was an error submitting your comment.')
+                messages.add_message(request, messages.SUCCESS,'Comment submitted and awaiting approval')
+            else:
+                print(comment_form.errors)  # Log the validation errors
+                return redirect('post_detail', slug=post.slug)
 
+        comment_form = CommentForm(data=request.POST)
+        print("About to render template")
+            
         return render(
             request,
             "post_detail.html",
