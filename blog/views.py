@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.views import View, generic
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Post, ReadLater, Comment
 from .forms import CommentForm
 
@@ -62,7 +63,7 @@ class PostDetail(View):
             downvoted = True
 
         if request.method == "POST":
-            print("Received a POST request")
+            
             comment_form = CommentForm(data=request.POST)
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
@@ -74,8 +75,7 @@ class PostDetail(View):
                 print(comment_form.errors)  # Log the validation errors
                 return redirect('post_detail', slug=post.slug)
 
-        comment_form = CommentForm(data=request.POST)
-        print("About to render template")
+        comment_form = CommentForm
             
         return render(
             request,
@@ -96,56 +96,66 @@ def comment_edit(request, slug, comment_id):
     """
     view to edit comments
     """
-    if request.method == "POST":
-
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = CommentForm(data=request.POST, instance=comment)
-
-        if comment_form.is_valid() and comment.author == request.user:
-            comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.approved = False
-            comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
-        else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
-
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-
-def comment_delete(request, slug, comment_id):
-    """
-    view to delete comment
-    """
-    queryset = Post.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(Post, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
-    if comment.author == request.user:
-        comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    if comment.author != request.user:
+        messages.error(request, "You can only edit your own comments.")
+        return redirect('post_detail', slug=post.slug)
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST, instance=comment)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.approved = False
+            comment.save()
+            messages.success(request, 'Comment updated successfully and awaiting approval.')
+        else:
+            messages.error(request, 'Error updating comment. Please check the form.')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        comment_form = CommentForm(instance=comment)
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    return redirect('post_detail', slug=post.slug)
 
+@login_required
+def comment_delete(request, slug, comment_id):
+    post = get_object_or_404(Post, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.user != request.user:
+        messages.error(request, "You can only delete your own comments.")
+    elif request.method == "POST":
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+    else:
+        messages.error(request, 'Invalid request method for comment deletion.')
+
+    return redirect('post_detail', slug=post.slug)
+
+
+@login_required
+def add_to_read_later(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug)
+    read_later_entry, created = ReadLater.objects.get_or_create(user=request.user, post=post)
+    
+    if created:
+        # The post was added to read later
+        message = "Post added to your 'Read Later' list!"
+    else:
+        # The post is already in the user's read later list
+        message = "Post is already in your 'Read Later' list."
+    
+    # Redirect to post detail after adding
+    return redirect(reverse("post_detail", args=[post.slug]))
+
+@login_required
 def read_later(request):
     if request.user.is_authenticated:
         read_later_posts = ReadLater.objects.filter(user=request.user)
-        return render(
-            request, "read_later.html", {"read_later_posts": read_later_posts}
-        )
+        return render(request, "read_later.html", {"read_later_posts": read_later_posts})
     else:
         return render(request, "read_later.html", {"read_later_posts": []})
-
-
-def add_to_read_later(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-    ReadLater.objects.get_or_create(user=request.user, post=post)
-    return redirect(reverse("post_detail", args=[post.slug]))
-
-
+        
 def post_upvote(request, post_slug):
     post = get_object_or_404(Post, id=post_id)
     if post.upvotes.filter(id=request.user.id).exists():

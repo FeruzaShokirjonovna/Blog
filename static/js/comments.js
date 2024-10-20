@@ -42,3 +42,19 @@ for (let button of deleteButtons) {
       deleteModal.show();
     });
   }
+
+document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");  // Adjust selector if needed
+        form.addEventListener("submit", function(event) {
+            const submitButton = form.querySelector("[type='submit']");
+            submitButton.disabled = true;  // Disable button after submission
+        });
+    });
+
+function showEditForm(commentId) {
+    document.getElementById('edit-form-' + commentId).style.display = 'block';
+}
+
+function hideEditForm(commentId) {
+    document.getElementById('edit-form-' + commentId).style.display = 'none';
+}

@@ -81,7 +81,7 @@ body {
     position: relative;
 }
 
-.masthead-image {
+.masthead-image img{
     position: relative;
     overflow: hidden;
 }

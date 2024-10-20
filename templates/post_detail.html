@@ -3,19 +3,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-{% load crispy_forms_tags %}
-
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
                 <img src="{% static 'images/default.jpeg' %}" class="scale" alt="placeholder">
             </div>
         </div>
@@ -26,101 +21,117 @@
     <div class="row">
         <div class="col card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
-
                 <p class="card-text ">
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
-
                     <div class="col-1">
-
                         {% if user.is_authenticated %}
                         <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
                             {% csrf_token %}
                             {% if upvoted %}
-
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
-                                    class="fas fa-thumb-up"></i></button>
-
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote">
+                                <i class="fas fa-thumb-up"></i>
+                            </button>
                             {% else %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote"><i
-                                    class="far fa-thumb-up"></i></button>
-
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote">
+                                <i class="far fa-thumb-up"></i>
+                            </button>
                             {% endif %}
                         </form>
                         <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
                             {% csrf_token %}
                             {% if downvoted %}
-
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
-                                    class="fas fa-thumb-down"></i></button>
-
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote">
+                                <i class="fas fa-thumb-down"></i>
+                            </button>
                             {% else %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote"><i
-                                    class="far fa-thumb-down"></i></button>
-
+                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote">
+                                <i class="far fa-thumb-down"></i>
+                            </button>
                             {% endif %}
-                            {% else %}
-                            <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
-                            <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
-                            {% endif %}
-                            <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
-                            <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
-
-
+                        </form>
+                        {% else %}
+                        <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
+                        <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
+                        {% endif %}
+                        <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
+                        <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
                     </div>
+
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                         <strong class="text-secondary"><i class="far fa-comments"></i>
-                            <!-- Our total_comments variable goes before the closing strong tag -->
-                            {{ total_comments }}</strong>
+                            {{ total_comments }}
+                        </strong>
                         {% endwith %}
                     </div>
+
+                    <!-- Add "Read Later" button -->
+                    <div class="col-2">
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'add_to_read_later' post.slug %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-secondary">Read Later</button>
+                        </form>
+                        {% else %}
+                        <p><a href="{% url 'login' %}">Log in</a> to save this post for later.</p>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <hr>
         </div>
     </div>
-    <!-- Displaying Comments -->
+
+    <!-- Comments section and comment form -->
     <div class="row">
-        <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="col-md-8 card mb-4 mt-3">
             <h3>Comments:</h3>
             <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                 {% for comment in comments %}
                 <div class="p-2 comments
-          {% if not comment.approved and comment.author == user %}
-          faded{% elif not comment.approved %} d-none{% endif %}">
+                {% if not comment.approved and comment.author == user %}
+                faded{% elif not comment.approved %} d-none{% endif %}">
                     <p class="font-weight-bold">
-                        {{ comment.author }}
-                        <span class="font-weight-normal">
-                            {{ comment.created_on }}
-                        </span> wrote:
+                        {{ comment.author }} <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
                     </p>
-                    <div id="comment{{ comment.id }}">
-                        {{ comment.body | linebreaks }}
-                    </div>
-                    {% if not comment.approved and comment.author == name %}
-                    <p class="approval">
-                        This comment is awaiting approval
-                    </p>
+                    <div id="comment{{ comment.id }}">{{ comment.body | linebreaks }}</div>
+                    {% if not comment.approved and comment.author == user %}
+                    <p class="approval">This comment is awaiting approval</p>
                     {% endif %}
-                    {% if user.is_authenticated and comment.author == name %}
-                    <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+
+                    <!-- Allow users to delete or edit their own comments -->
+                    {% if user.is_authenticated and comment.author == user %}
+                    <form action="{% url 'comment_delete' post.slug comment.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                    </form>
+
+                    <button class="btn btn-edit" onclick="showEditForm('{{ comment.id }}')">Edit</button>
+
+                    <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
+                        method="POST" style="display: none;">
+                        {% csrf_token %}
+                        <textarea name="body" rows="4" cols="50">{{ comment.body }}</textarea>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-secondary"
+                            onclick="hideEditForm('{{ comment.id }}')">Cancel</button>
+                    </form>
+
                     {% endif %}
                 </div>
-                <!-- Our for loop ends here -->
                 {% endfor %}
             </div>
         </div>
-        <!-- Creating New Comments -->
+
+        <!-- Creating new comments -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
                 {% if user.is_authenticated %}
@@ -138,26 +149,7 @@
         </div>
     </div>
 </div>
-<!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete your comment?
-                This action cannot be undone.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="deleteConfirm" href="#" class="btn
-          btn-danger">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 {% endblock content %}
 
 {% block extras %}

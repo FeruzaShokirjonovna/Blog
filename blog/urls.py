@@ -18,15 +18,12 @@ urlpatterns = [
     path(
         "<slug:slug>/", views.PostDetail.as_view(), name="post_detail"
     ),  # Post Detail
-    path(
-        "read_later/", read_later, name="read_later"
-    ),  # Read Later URL pattern
-    # Add to Read Later URL pattern
-    path(
-        "add_to_read_later/<slug:post_slug>/",
-        add_to_read_later,
-        name="add_to_read_later",
-    ),
+    
+    # URL to add posts to "Read Later"
+    path('add_to_read_later/<slug:post_slug>/', views.add_to_read_later, name='add_to_read_later'),
+    
+    # URL to view saved "Read Later" posts
+    path('read_later/', views.read_later, name='read_later'),
     path(
         "post/<slug:slug>/upvote/", views.post_upvote, name="post_upvote"
     ),  # Post upvote URL pattern

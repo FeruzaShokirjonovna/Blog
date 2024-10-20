@@ -19,10 +19,10 @@ class PostAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     # Set list of posts displayed by title, slug,status and created date
-    list_display = ("name", "body", "post", "created_on", "approved")
+    list_display = ("author", "body", "post", "created_on", "approved")
     # Creates filter
     list_filter = ("approved", "created_on")
-    search_fields = ("name", "email", "body")
+    search_fields = ("author_username", "body")
     actions = ["approve_comments"]
 
     # Approve comments method
