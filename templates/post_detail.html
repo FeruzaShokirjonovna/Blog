@@ -25,39 +25,36 @@
                     {{ post.content | safe }}
                 </p>
                 <div class="row">
-                    <div class="col-1">
+                    <div class="d-inline-block">
                         {% if user.is_authenticated %}
+                        <!-- Upvote Button -->
                         <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
                             {% csrf_token %}
-                            {% if upvoted %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote">
-                                <i class="fas fa-thumb-up"></i>
+                            <button type="submit" class="btn btn-outline-success btn-sm">
+                                <i class="{% if upvoted %}fas{% else %}far{% endif %} fa-thumbs-up"></i> {{
+                                post.number_of_upvotes }}
                             </button>
-                            {% else %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-upvote">
-                                <i class="far fa-thumb-up"></i>
-                            </button>
-                            {% endif %}
                         </form>
+
+                        <!-- Downvote Button -->
                         <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
                             {% csrf_token %}
-                            {% if downvoted %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote">
-                                <i class="fas fa-thumb-down"></i>
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="{% if downvoted %}fas{% else %}far{% endif %} fa-thumbs-down"></i> {{
+                                post.number_of_downvotes }}
                             </button>
-                            {% else %}
-                            <button type="submit" name="blogpost_id" value="{{post.slug}}" class="btn-downvote">
-                                <i class="far fa-thumb-down"></i>
-                            </button>
-                            {% endif %}
                         </form>
                         {% else %}
-                        <span class="text-secondary"><i class="far fa-thumb-up"></i></span>
-                        <span class="text-secondary"><i class="far fa-thumb-down"></i></span>
+                        <span class="text-secondary">
+                            <i class="far fa-thumbs-up"></i> {{ post.number_of_upvotes }}
+                        </span>
+                        <span class="text-secondary">
+                            <i class="far fa-thumbs-down"></i> {{ post.number_of_downvotes }}
+                        </span>
+                        <p class="text-muted">Log in to vote.</p>
                         {% endif %}
-                        <span class="text-secondary"> {{ post.number_of_upvotes }}</span>
-                        <span class="text-secondary"> {{ post.number_of_downvotes }}</span>
                     </div>
+
 
                     <div class="col-1">
                         {% with comments.count as total_comments %}
