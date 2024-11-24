@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Vote, ReadLater
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -29,3 +29,17 @@ class CommentAdmin(admin.ModelAdmin):
     # To approve the comment, set the field to true
     def approve_comments(self, request, queryset):
         queryset.update(approved=True)
+
+# Decorator for upvoting and downvoting 
+@admin.register(Vote)
+class VoteAdmin(admin.ModelAdmin):
+    list_display = ("post", "user", "vote")
+    list_filter = ("vote",)
+    search_fields = ("post__title", "user__username")
+
+# Decorator for Read Later
+@admin.register(ReadLater)
+class ReadLaterAdmin(admin.ModelAdmin):
+    list_display = ("user", "post", "added_on")
+    list_filter = ("added_on",)
+    search_fields = ("user__username", "post__title")
