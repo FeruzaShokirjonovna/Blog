@@ -3,7 +3,7 @@
 
 :root {
   --primary-color: #763ae0;
-  --primary-color-dark: #6345fb;
+  --primary-color-dark: #2002b8;
   --secondary-color: #a0d333;
   --bg-color: #fcf9f2;
   --text-dark: #333333;
@@ -22,6 +22,7 @@ body {
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--secondary-color);
+    margin: 2rem 3rem;
 }
 
 #slogan {
@@ -57,11 +58,12 @@ body {
     bottom: 5%;
     min-width: 30%;
     left: -2px;
+    border-radius: 10px;
     background-color: var(--bg-color);
 }
 
 .author {
-    color: var(--primary-color);
+    color: var(--primary-color-dark);
     margin: 4px;
     text-transform: uppercase;
 }
@@ -99,6 +101,12 @@ body {
     transform: skew(15deg);
     z-index: 100;
 }
+/* Post title and excert style on post list
+.card-title {
+    margin-top: 1rem;
+}
+ */
+
 
 .post-link {
     text-decoration: none;
@@ -111,7 +119,7 @@ body {
 }
 
 .post-title {
-    margin-top: 20%;
+    margin-top: 40%;
     margin-left: 5%;
     color:var(--text-dark);
 }
@@ -143,6 +151,7 @@ body {
     text-decoration: underline;
 }
 
+/* Upvote and downvote buttons style */
 .btn-delete,
 .btn-upvote {
     color: red;
@@ -171,4 +180,43 @@ btn-edit:hover,
     color: gray;
     background: transparent;
     border: none;
+}
+
+/* Voting Buttons */
+.btn-success, .btn-danger, .btn-outline-secondary {
+    border-radius: 50%; /* Circular buttons */
+    font-size: 18px; /* Icon size */
+    transition: all 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.btn-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Center-align text below buttons */
+.text-center p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Read Later Button */
+.btn-outline-primary {
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
 }

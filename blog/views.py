@@ -157,22 +157,22 @@ def read_later(request):
         return render(request, "read_later.html", {"read_later_posts": []})
         
 def post_upvote(request, post_slug):
-    post = get_object_or_404(Post, id=post_id)
-    if post.upvotes.filter(id=request.user.id).exists():
-        post.upvotes.remove(request.user)
-    else:
-        # Ensure user can only upvote or downvote, not both
-        post.upvotes.add(request.user)
-        post.downvotes.remove(request.user)
+    post = get_object_or_404(Post, slug=post_slug)
+    if request.user.is_authenticated:
+        if post.upvotes.filter(id=request.user.id).exists():
+            post.upvotes.remove(request.user)  # Remove the upvote if it exists
+        else:
+            post.upvotes.add(request.user)  # Add the upvote
+            post.downvotes.remove(request.user)  # Remove downvote if it exists
     return redirect(reverse("post_detail", kwargs={"slug": post.slug}))
 
 
 def post_downvote(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
-    if post.downvotes.filter(id=request.user.id).exists():
-        post.downvotes.remove(request.user)
-    else:
-        # Ensure user can only upvote or downvote, not both
-        post.downvotes.add(request.user)
-        post.upvotes.remove(request.user)
+    if request.user.is_authenticated:
+        if post.downvotes.filter(id=request.user.id).exists():
+            post.downvotes.remove(request.user)  # Remove the downvote if it exists
+        else:
+            post.downvotes.add(request.user)  # Add the downvote
+            post.upvotes.remove(request.user)  # Remove upvote if it exists
     return redirect(reverse("post_detail", kwargs={"slug": post.slug}))

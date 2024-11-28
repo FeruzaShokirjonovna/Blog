@@ -24,52 +24,59 @@
                 <p class="card-text ">
                     {{ post.content | safe }}
                 </p>
-                <div class="row">
-                    <div class="d-inline-block">
-                        {% if user.is_authenticated %}
+                <div class="d-flex align-items-center gap-3 mt-3">
+                    <div class="text-center">
                         <!-- Upvote Button -->
-                        <form class="d-inline" action="{% url 'post_upvote' post.slug %}" method="POST">
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'post_upvote' post.slug %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-success btn-sm">
-                                <i class="{% if upvoted %}fas{% else %}far{% endif %} fa-thumbs-up"></i> {{
-                                post.number_of_upvotes }}
+                            <button type="submit" class="btn btn-success btn-sm p-2" style="width: 40px; height: 40px;">
+                                <i class="{% if upvoted %}fas{% else %}far{% endif %} fa-thumbs-up"></i>
                             </button>
                         </form>
-
+                        <!-- Upvote Count -->
+                        <p class="mb-0 mt-1">{{ post.number_of_upvotes }}</p>
+                    </div>
+                    <div class="text-center">
                         <!-- Downvote Button -->
-                        <form class="d-inline" action="{% url 'post_downvote' post.slug %}" method="POST">
+                        <form action="{% url 'post_downvote' post.slug %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                <i class="{% if downvoted %}fas{% else %}far{% endif %} fa-thumbs-down"></i> {{
-                                post.number_of_downvotes }}
+                            <button type="submit" class="btn btn-danger btn-sm p-2" style="width: 40px; height: 40px;">
+                                <i class="{% if downvoted %}fas{% else %}far{% endif %} fa-thumbs-down"></i>
                             </button>
                         </form>
+                        <!-- Downvote Count -->
+                        <p class="mb-0 mt-1">{{ post.number_of_downvotes }}</p>
+
                         {% else %}
                         <span class="text-secondary">
-                            <i class="far fa-thumbs-up"></i> {{ post.number_of_upvotes }}
+                            👍 {{ post.number_of_upvotes }}
                         </span>
                         <span class="text-secondary">
-                            <i class="far fa-thumbs-down"></i> {{ post.number_of_downvotes }}
+                            👎 {{ post.number_of_downvotes }}
                         </span>
                         <p class="text-muted">Log in to vote.</p>
                         {% endif %}
                     </div>
 
 
-                    <div class="col-1">
+                    <div class="text-center">
                         {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i>
-                            {{ total_comments }}
-                        </strong>
+                        <span class="btn btn-outline-secondary btn-sm p-2" style="width: 40px; height: 40px;">
+                            <i class="far fa-comments"></i>
+                        </span>
+                        <p class="mb-0 mt-1">{{ comments.count }}</p>
+
                         {% endwith %}
                     </div>
 
                     <!-- Add "Read Later" button -->
-                    <div class="col-2">
+                    <div>
                         {% if user.is_authenticated %}
                         <form action="{% url 'add_to_read_later' post.slug %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary">Read Later</button>
+                            <button type="submit" class="btn btn-secondary"><i class="fas fa-bookmark"></i> Read
+                                Later</button>
                         </form>
                         {% else %}
                         <p><a href="{% url 'login' %}">Log in</a> to save this post for later.</p>
@@ -150,5 +157,6 @@
 {% endblock content %}
 
 {% block extras %}
+<script src="{% static 'js/vote.js' %}"></script>
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
