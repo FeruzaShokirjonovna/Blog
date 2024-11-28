@@ -6,12 +6,21 @@
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text">
+            <!-- Masthead text and title -->
+            <div class="col-md-6 masthead-text d-flex flex-column justify-content-center align-items-start">
                 <h1 class="post-title">{{ post.title }}</h1>
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/default.jpeg' %}" class="scale" alt="placeholder">
+
+            <!-- Masthead image -->
+            <div class="col-md-6 masthead-image">
+                <div class="image-container">
+                    {% if post.featured_image %}
+                        <img class="card-img-top" src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                    {% else %}
+                        <img class="card-img-top" src="{% static 'images/default.jpeg' %}" alt="placeholder image">
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -19,11 +28,27 @@
 
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <!-- Sticky Read Later Button (in a sidebar) -->
+        <div class="col-12" style="margin: 20px;">
+            {% if user.is_authenticated %}
+            <form action="{% url 'add_to_read_later' post.slug %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="fas fa-bookmark"></i> Read Later
+                </button>
+            </form>
+            {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to save this post for later.</p>
+            {% endif %}
+        </div>
+
+        <!-- Post Content -->
+        <div class="col card mb-4 mt-3">
             <div class="card-body">
-                <p class="card-text ">
+                <p class="card-text">
                     {{ post.content | safe }}
                 </p>
+                <!-- Voting Section -->
                 <div class="d-flex align-items-center gap-3 mt-3">
                     <div class="text-center">
                         <!-- Upvote Button -->
@@ -68,19 +93,6 @@
                         <p class="mb-0 mt-1">{{ comments.count }}</p>
 
                         {% endwith %}
-                    </div>
-
-                    <!-- Add "Read Later" button -->
-                    <div>
-                        {% if user.is_authenticated %}
-                        <form action="{% url 'add_to_read_later' post.slug %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary"><i class="fas fa-bookmark"></i> Read
-                                Later</button>
-                        </form>
-                        {% else %}
-                        <p><a href="{% url 'login' %}">Log in</a> to save this post for later.</p>
-                        {% endif %}
                     </div>
 
                 </div>

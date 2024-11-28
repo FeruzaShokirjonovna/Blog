@@ -68,24 +68,43 @@ body {
     text-transform: uppercase;
 }
 
+/* Masthead Section */
 .masthead {
     margin-top: 10px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    /*margin-top: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
-    width: 100%;
+    height: 40vh;
+    width: 100%;*/
 }
 
 .masthead-text {
-    background-color: #b8d5f3;
+    background-color: var(--bg-color);
     color: var(--text-dark);
-    position: relative;
+    /*position: relative;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;      
+    height: 100%;             
+    padding: 20px;
+    text-align: center;;
 }
 
 .masthead-image img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.image-container {
+    /*width: 100%;
+    height: 100%;*/
     position: relative;
-    overflow: hidden;
 }
 
 .masthead-image:after {
@@ -96,9 +115,9 @@ body {
     height: 100%;
     width: 150%;
     background: var(--bg-color);
-    -webkit-transform: skew(15deg);
+    /*-webkit-transform: skew(15deg);
     -moz-transform: skew(15deg);
-    transform: skew(15deg);
+    transform: skew(15deg);*/
     z-index: 100;
 }
 /* Post title and excert style on post list
@@ -151,32 +170,26 @@ body {
     text-decoration: underline;
 }
 
-/* Upvote and downvote buttons style */
-.btn-delete,
-.btn-upvote {
+/* Comment delete and edit buttons style */
+.btn-delete {
     color: red;
     border: none;
     background: transparent;
 }
 .btn-delete:hover,
-.btn-delete:active,
-.btn-upvote:hover,
-.btn-upvote:active {
+.btn-delete:active {
     color: red;
     background: transparent;
     border: none;
 }
 
-.btn-edit,
-.btn-downvote {
+.btn-edit {
     color: gray;
     border: none;
     background: transparent;
 }
 btn-edit:hover,
-.btn-edit:active,
-.btn-downvote:hover,
-.btn-downvote:active {
+.btn-edit:active {
     color: gray;
     background: transparent;
     border: none;
@@ -219,4 +232,25 @@ btn-edit:hover,
 .btn-outline-primary:hover {
     background-color: #007bff;
     color: white;
+}
+
+@media (max-width: 768px) {
+    /* Stack layout for small screens */
+    .masthead {
+        flex-direction: column;
+    }
+
+    .masthead-image,
+    .masthead-text {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .masthead-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .masthead-text p {
+        font-size: 0.9rem;
+    }
 }
