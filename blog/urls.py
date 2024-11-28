@@ -15,18 +15,16 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     
     path("", views.PostList.as_view(), name='home'),
+    # URL to view saved "Read Later" posts
+    path('read_later/', views.read_later, name='read_later'),
     path(
         "<slug:slug>/", views.PostDetail.as_view(), name="post_detail"
     ),  # Post Detail
-    
     # URL to add posts to "Read Later"
     path('add_to_read_later/<slug:post_slug>/', views.add_to_read_later, name='add_to_read_later'),
-    
-    # URL to view saved "Read Later" posts
-    path('read_later/', views.read_later, name='read_later'),
-     # Post upvote URL pattern
+    # Post upvote URL pattern
     path("post/<slug:post_slug>/upvote/", views.post_upvote, name="post_upvote"),  # Post upvote URL pattern
-     # Post downvote URL pattern
+    # Post downvote URL pattern
     path("post/<slug:post_slug>/downvote/", views.post_downvote, name="post_downvote"), 
     path('<slug:slug>/edit_comment/<int:comment_id>',views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
