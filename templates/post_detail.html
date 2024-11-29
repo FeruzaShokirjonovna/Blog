@@ -137,7 +137,8 @@
                         <button type="submit" class="btn btn-delete">Delete</button>
                     </form>
 
-                    <button class="btn btn-edit" onclick="showEditForm('{{ comment.id }}')">Edit</button>
+                    <button class="btn btn-edit" comment_id="{{ comment.id }}"
+                        onclick="showEditForm('{{ comment.id }}')">Edit</button>
 
                     <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
                         method="POST" style="display: none;">
@@ -172,6 +173,27 @@
         </div>
     </div>
 </div>
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete your comment?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock content %}
 
