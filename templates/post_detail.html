@@ -3,20 +3,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!-- Display messages -->
-<div class="container">
-    {% if messages %}
-    <div class="alert-container">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
 
-
-</div>
 <!-- Masthead Section -->
 <div class="masthead">
     <div class="container">
@@ -47,8 +34,7 @@
         <!-- Sticky Read Later Button (in a sidebar) -->
         <div class="col-12" style="margin: 20px;">
             {% if user.is_authenticated %}
-            {% if post.read_later %}
-            
+
             <!-- If the post is not saved to 'Read Later', show the Add button -->
             <form action="{% url 'add_to_read_later' post.slug %}" method="POST">
                 {% csrf_token %}
@@ -56,7 +42,6 @@
                     <i class="fas fa-bookmark"></i> Read Later
                 </button>
             </form>
-            {% endif %}
             {% else %}
             <p><a href="{% url 'login' %}">Log in</a> to save this post for later.</p>
             {% endif %}

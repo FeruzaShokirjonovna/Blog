@@ -7,6 +7,7 @@ from .views import (
     PostDetail,
     read_later,
     add_to_read_later,
+    remove_from_read_later,
     post_upvote,
     post_downvote,
 )
@@ -25,7 +26,7 @@ urlpatterns = [
     # URL to add posts to "Read Later"
     path('add_to_read_later/<slug:post_slug>/', views.add_to_read_later, name='add_to_read_later'),
     # Post upvote URL pattern
-    path("post/<slug:post_slug>/upvote/", views.post_upvote, name="post_upvote"),  # Post upvote URL pattern
+    path("post/<slug:post_slug>/upvote/", views.post_upvote, name="post_upvote"), 
     # Post downvote URL pattern
     path("post/<slug:post_slug>/downvote/", views.post_downvote, name="post_downvote"), 
     path('<slug:slug>/edit_comment/<int:comment_id>',views.comment_edit, name='comment_edit'),
