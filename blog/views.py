@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.urls import reverse
 from django.views import View, generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Post, ReadLater, Comment
@@ -135,19 +135,22 @@ def comment_delete(request, slug, comment_id):
 
 @login_required
 def add_to_read_later(request, post_slug):
-    post = get_object_or_404(Post, slug=post_slug)
-    read_later_entry, created = ReadLater.objects.get_or_create(user=request.user, post=post)
+    post = Post.objects.get(slug=post_slug)
     
-    if created:
-        # The post was added to read later
-        message = "Post added to your 'Read Later' list!"
+    # Check if the post is already in the user's "Read Later" list
+    existing_post = ReadLater.objects.filter(user=request.user, post=post)
+    
+    if existing_post.exists():
+        # If the post is already in "Read Later", remove it
+        existing_post.delete()
+        messages.success(request, "This post has been removed from your 'Read Later' list.")
     else:
-        # The post is already in the user's read later list
-        message = "Post is already in your 'Read Later' list."
+        # If the post is not in "Read Later", add it
+        ReadLater.objects.create(user=request.user, post=post)
+        
+    # Redirect to the post detail page to refresh the state
+    return redirect('post_detail', slug=post.slug)
     
-    # Redirect to post detail after adding
-    return redirect(reverse("post_detail", args=[post.slug]))
-
 @login_required
 def read_later(request):
     if request.user.is_authenticated:
@@ -155,7 +158,21 @@ def read_later(request):
         return render(request, "read_later.html", {"read_later_posts": read_later_posts})
     else:
         return render(request, "read_later.html", {"read_later_posts": []})
-        
+
+@login_required
+def remove_from_read_later(request, post_slug):
+    # Fetch the post based on the slug
+    post = Post.objects.get(slug=post_slug)
+    
+    # Remove the post from the ReadLater list for the user
+    ReadLater.objects.filter(user=request.user, post=post).delete()
+    
+    # Display a success message
+    messages.success(request, "This post has been removed from your 'Read Later' list.")
+    
+    # Redirect back to the Read Later page
+    return redirect('read_later', slug=post.slug)
+
 def post_upvote(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
     if request.user.is_authenticated:

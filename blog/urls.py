@@ -17,6 +17,8 @@ urlpatterns = [
     path("", views.PostList.as_view(), name='home'),
     # URL to view saved "Read Later" posts
     path('read_later/', views.read_later, name='read_later'),
+    path('remove_from_read_later/<slug:post_slug>/', views.remove_from_read_later, name='remove_from_read_later'),
+
     path(
         "<slug:slug>/", views.PostDetail.as_view(), name="post_detail"
     ),  # Post Detail

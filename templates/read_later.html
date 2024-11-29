@@ -7,7 +7,16 @@
     {% if read_later_posts %}
         <ul>
             {% for item in read_later_posts %}
-                <li><a href="{% url 'post_detail' item.post.slug %}">{{ item.post.title }}</a> - Added on {{ item.added_on }}</li>
+                <li>
+                    <a href="{% url 'post_detail' item.post.slug %}">{{ item.post.title }}</a> - Added on {{ item.added_on }}
+                    <form action="{% url 'remove_from_read_later' post.slug %}" method="POST">
+
+                    {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </form>
+                </li>
             {% endfor %}
         </ul>
     {% else %}
