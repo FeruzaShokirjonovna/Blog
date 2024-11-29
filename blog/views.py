@@ -122,7 +122,7 @@ def comment_delete(request, slug, comment_id):
     post = get_object_or_404(Post, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
-    if comment.user != request.user:
+    if comment.author != request.user:
         messages.error(request, "You can only delete your own comments.")
     elif request.method == "POST":
         comment.delete()
