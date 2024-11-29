@@ -29,7 +29,7 @@ urlpatterns = [
     path("post/<slug:post_slug>/upvote/", views.post_upvote, name="post_upvote"), 
     # Post downvote URL pattern
     path("post/<slug:post_slug>/downvote/", views.post_downvote, name="post_downvote"), 
-    path('<slug:slug>/edit_comment/<int:comment_id>',views.comment_edit, name='comment_edit'),
+    path('<slug:slug>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]

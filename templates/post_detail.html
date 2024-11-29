@@ -134,7 +134,7 @@
                     {% if user.is_authenticated and comment.author == user %}
                     <form action="{% url 'comment_delete' post.slug comment.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-delete">Delete</button>
+                        <button type="submit" comment_id="{{ comment.id }}" class="btn btn-delete">Delete</button>
                     </form>
 
                     <button class="btn btn-edit" comment_id="{{ comment.id }}"
@@ -143,7 +143,8 @@
                     <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
                         method="POST" style="display: none;">
                         {% csrf_token %}
-                        <textarea name="body" rows="4" cols="50">{{ comment.body }}</textarea>
+                        <textarea name="body" rows="4" cols="50" id="id_body" class="textarea
+                        form-control">{{ comment.body }}</textarea>
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-secondary"
                             onclick="hideEditForm('{{ comment.id }}')">Cancel</button>

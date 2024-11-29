@@ -49,7 +49,7 @@
                     <li class="nav-item">
                         <a href="{% url 'read_later' %}" class="nav-link">Read Later</a>
                     </li>
-                
+
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="Logout"
                             href="{% url 'account_logout' %}">Logout</a>
@@ -73,7 +73,7 @@
     </nav>
 
     <!--Messages-->
-    
+
     <!-- displaying Django messages -->
     <div class="container">
         <div class="row">
@@ -128,5 +128,8 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
         </script>
 
+    {% block extras %}
+
+    {% endblock %}
 
 </body>

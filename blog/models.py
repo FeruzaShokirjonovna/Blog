@@ -43,8 +43,6 @@ class Post(models.Model):
 
 
 # Comment Models
-
-
 class Comment(models.Model):
     
     post = models.ForeignKey(Post, on_delete=models.CASCADE,

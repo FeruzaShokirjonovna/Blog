@@ -17,11 +17,11 @@ const deleteConfirm = document.getElementById("deleteConfirm");
 */
 for (let button of editButtons) {
   button.addEventListener("click", (e) => {
-    let commentId = e.target.getAttribute("comment_id");
-    let commentContent = document.getElementById(`comment${commentId}`).innerText;
-    commentText.value = commentContent;
-    submitButton.innerText = "Update";
-    commentForm.setAttribute("action", `edit_comment/${commentId}`);
+      let commentId = e.target.getAttribute("comment_id");
+      let commentContent = document.getElementById(`comment${commentId}`).innerText;
+      commentText.value = commentContent;
+      submitButton.innerText = "Update";
+      commentForm.setAttribute("action", `edit_comment/${commentId}`);
   });
 }
 
@@ -36,15 +36,15 @@ for (let button of editButtons) {
 * the user for confirmation before deletion.
 */
 for (let button of deleteButtons) {
-    button.addEventListener("click", (e) => {
-      let commentId = e.target.getAttribute("comment_id");
-      deleteConfirm.href = `delete_comment/${commentId}`;
-      deleteModal.show();
-    });
-  }
+  button.addEventListener("click", (e) => {
+    let commentId = e.target.getAttribute("comment_id");
+    deleteConfirm.href = `delete_comment/${commentId}`;
+    deleteModal.show();
+  });
+}
 
 document.addEventListener("DOMContentLoaded", function() {
-        const form = document.querySelector("form");  // Adjust selector if needed
+        const form = document.querySelector("form");  // 
         form.addEventListener("submit", function(event) {
             const submitButton = form.querySelector("[type='submit']");
             submitButton.disabled = true;  // Disable button after submission
@@ -58,3 +58,4 @@ function showEditForm(commentId) {
 function hideEditForm(commentId) {
     document.getElementById('edit-form-' + commentId).style.display = 'none';
 }
+
