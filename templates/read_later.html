@@ -9,7 +9,15 @@
             {% for item in read_later_posts %}
                 <li>
                     <a href="{% url 'post_detail' item.post.slug %}">{{ item.post.title }}</a> - Added on {{ item.added_on }}
-                    
+                    <div class="col-12" style="margin: 20px;">
+            
+                        <!-- If the post is saved to 'Read Later', show the Remove button -->
+                        <form action="{% url 'remove_from_read_later' item.post.slug %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-bookmark"></i>Remove
+                            </button>
+                        </form>
                 </li>
             {% endfor %}
         </ul>

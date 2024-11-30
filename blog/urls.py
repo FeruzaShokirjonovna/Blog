@@ -19,12 +19,12 @@ urlpatterns = [
     # URL to view saved "Read Later" posts
     path('read_later/', views.read_later, name='read_later'),
     path('remove_from_read_later/<slug:post_slug>/', views.remove_from_read_later, name='remove_from_read_later'),
-
+        # URL to add posts to "Read Later"
+    path('add_to_read_later/<slug:post_slug>/', views.add_to_read_later, name='add_to_read_later'),
     path(
         "<slug:slug>/", views.PostDetail.as_view(), name="post_detail"
     ),  # Post Detail
-    # URL to add posts to "Read Later"
-    path('add_to_read_later/<slug:post_slug>/', views.add_to_read_later, name='add_to_read_later'),
+
     # Post upvote URL pattern
     path("post/<slug:post_slug>/upvote/", views.post_upvote, name="post_upvote"), 
     # Post downvote URL pattern

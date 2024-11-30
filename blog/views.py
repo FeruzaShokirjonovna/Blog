@@ -143,11 +143,11 @@ def add_to_read_later(request, post_slug):
     if existing_post.exists():
         # If the post is already in "Read Later", remove it
         existing_post
-        messages.success(request, "This post is already in your 'Read Later' list.")
+        messages.success(request, "This post is already in your Read Later list.")
     else:
         # If the post is not in "Read Later", add it
         ReadLater.objects.create(user=request.user, post=post)
-        messages.success(request, "This post is successfully added to your 'Read Later' list.")
+        messages.success(request, "This post is successfully added to your Read Later list.")
     # Redirect to the post detail page to refresh the state
     return redirect('post_detail', slug=post.slug)
     
@@ -168,10 +168,10 @@ def remove_from_read_later(request, post_slug):
     ReadLater.objects.filter(user=request.user, post=post).delete()
     
     # Display a success message
-    messages.success(request, "This post has been removed from your 'Read Later' list.")
+    messages.success(request, "This post has been removed from your Read Later list.")
     
     # Redirect back to the Read Later page
-    return redirect('read_later.html', slug=post_slug)
+    return redirect('read_later')
 
 def post_upvote(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
