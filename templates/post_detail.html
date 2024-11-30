@@ -114,62 +114,79 @@
     </div>
 
     <!-- Comments section and comment form -->
-    <div class="row">
-        <div class="col-md-8 card mb-4 mt-3">
-            <h3>Comments:</h3>
-            <div class="card-body">
-                {% for comment in comments %}
-                <div class="p-2 comments
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 card mb-4 mt-3">
+                <h3>Comments:</h3>
+                <div class="card-body">
+                    {% for comment in comments %}
+                    <div class="p-2 comments
                 {% if not comment.approved and comment.author == user %}
                 faded{% elif not comment.approved %} d-none{% endif %}">
-                    <p class="font-weight-bold">
-                        {{ comment.author }} <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
-                    </p>
-                    <div id="comment{{ comment.id }}">{{ comment.body | linebreaks }}</div>
-                    {% if not comment.approved and comment.author == user %}
-                    <p class="approval">This comment is awaiting approval</p>
-                    {% endif %}
+                        <p class="font-weight-bold">
+                            {{ comment.author }} <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
+                        </p>
+                        <div id="comment{{ comment.id }}" class="comment-body mt-2">{{ comment.body | linebreaks }}
+                        </div>
 
-                    <!-- Allow users to delete or edit their own comments -->
-                    {% if user.is_authenticated and comment.author == user %}
-                    <form action="{% url 'comment_delete' post.slug comment.id %}" method="POST">
+                        <!-- Allow users to delete or edit their own comments -->
+                        {% if user.is_authenticated and comment.author == user %}
+                        <div class="d-flex justify-content-start align-items-center mt-3">
+
+                            <!-- Delete Button -->
+                            <form action="{% url 'comment_delete' post.slug comment.id %}" method="POST" class="me-2">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm"
+                                    comment_id="{{ comment.id }}">
+                                    <i class="bi bi-trash"></i> Delete
+                                </button>
+                            </form>
+
+                            <!-- Edit Button -->
+                            <button class="btn btn-outline-info btn-sm" comment_id="{{ comment.id }}"
+                                onclick="showEditForm('{{ comment.id }}')">
+                                <i class="bi bi-pencil"></i> Edit
+                            </button>
+
+                            <!-- Edit Form (Hidden by default) -->
+                            <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
+                                method="POST" style="display: none; margin: 10px;">
+                                {% csrf_token %}
+                                <div class="mb-2">
+                                    <textarea name="body" rows="4" cols="50" id="id_body"
+                                        class="form-control">{{ comment.body }}</textarea>
+                                </div>
+                                <div class="d-flex justify-content-evenly">
+                                    <button type="submit" class="btn btn-outline-success btn-sm">Save</button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm"
+                                        onclick="hideEditForm('{{ comment.id }}')">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        {% endif %}
+
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Creating new comments -->
+            <div class="col-md-4 card mb-4 mt-3">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
                         {% csrf_token %}
-                        <button type="submit" comment_id="{{ comment.id }}" class="btn btn-delete">Delete</button>
+                        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                     </form>
-
-                    <button class="btn btn-edit" comment_id="{{ comment.id }}"
-                        onclick="showEditForm('{{ comment.id }}')">Edit</button>
-
-                    <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
-                        method="POST" style="display: none;">
-                        {% csrf_token %}
-                        <textarea name="body" rows="4" cols="50" id="id_body" class="textarea
-                        form-control">{{ comment.body }}</textarea>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-secondary"
-                            onclick="hideEditForm('{{ comment.id }}')">Cancel</button>
-                    </form>
-
+                    {% else %}
+                    <p>Log in to leave a comment</p>
                     {% endif %}
                 </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Creating new comments -->
-        <div class="col-md-4 card mb-4 mt-3">
-            <div class="card-body">
-                {% if user.is_authenticated %}
-                <h3>Leave a comment:</h3>
-                <p>Posting as: {{ user.username }}</p>
-                <form id="commentForm" method="post" style="margin-top: 1.3em;">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% else %}
-                <p>Log in to leave a comment</p>
-                {% endif %}
             </div>
         </div>
     </div>
