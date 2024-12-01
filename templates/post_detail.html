@@ -59,26 +59,29 @@
                 <div class="text-center d-flex align-items-center">
                     {% if user.is_authenticated %}
                     <!-- Upvote Form -->
-                        <form action="{% url 'post_upvote' post.slug %}" method="POST" class="me-2">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm p-2" style="width: 40px; height: 40px;">
-                                <i class="{% if upvoted %}fas{% else %}far{% endif %} fa-thumbs-up"></i>
-                            </button>
-                        </form>
+                    <form action="{% url 'post_upvote' post.slug %}" method="POST" class="me-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm p-2" style="width: 40px; height: 40px;">
+                            <i class="{% if upvoted %}fas{% else %}far{% endif %} fa-thumbs-up"></i>
+                        </button>
+                    </form>
                     <!-- Upvote Count -->
-                        <p class="mb-0 mt-1">{{ post.number_of_upvotes }}</p>
+                    <p class="mb-0 mt-1">{{ post.number_of_upvotes }}</p>
                     {% else %}
                     <!-- Upvote Button (Unauthenticated) -->
-                        <button type="button" class="btn btn-outline-success btn-sm p-2" style="width: 40px; height: 40px;"
-                            data-bs-toggle="modal" data-bs-target="#loginModal">
-                            <i class="far fa-thumbs-up"></i>
-                        </button>
-                        <p class="mb-0 mt-1">{{ post.number_of_upvotes }}</p>
+                    <button type="button" class="btn btn-outline-success btn-sm p-2" style="width: 40px; height: 40px;"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="far fa-thumbs-up"></i>
+                    </button>
+                    <p class="mb-0 mt-1">{{ post.number_of_upvotes }}</p>
                     {% endif %}
                 </div>
-                <div class="text-center">
-                    <!-- Downvote Button -->
-                    <form action="{% url 'post_downvote' post.slug %}" method="POST">
+
+                <!-- Downvote Button & Count -->
+                <div class="text-center d-flex align-items-center">
+                    {% if user.is_authenticated %}
+                    <!-- Downvote Form -->
+                    <form action="{% url 'post_downvote' post.slug %}" method="POST" class="me-2">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm p-2" style="width: 40px; height: 40px;">
                             <i class="{% if downvoted %}fas{% else %}far{% endif %} fa-thumbs-down"></i>
@@ -86,17 +89,16 @@
                     </form>
                     <!-- Downvote Count -->
                     <p class="mb-0 mt-1">{{ post.number_of_downvotes }}</p>
-
-                    
-                    <span class="text-secondary">
-                        👍 {{ post.number_of_upvotes }}
-                    </span>
-                    <span class="text-secondary">
-                        👎 {{ post.number_of_downvotes }}
-                    </span>
-                    <p class="text-muted">Log in to vote.</p>
-
+                    {% else %}
+                    <!-- Downvote Button (Unauthenticated) -->
+                    <button type="button" class="btn btn-outline-danger btn-sm p-2" style="width: 40px; height: 40px;"
+                        data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="far fa-thumbs-down"></i>
+                    </button>
+                    <p class="mb-0 mt-1">{{ post.number_of_downvotes }}</p>
+                    {% endif %}
                 </div>
+
 
 
                 <div class="text-center">
