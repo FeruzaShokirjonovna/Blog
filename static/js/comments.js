@@ -6,7 +6,7 @@ const submitButton = document.getElementById("submitButton");
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-outline-danger");
 const deleteConfirm = document.getElementById("deleteConfirm");
-
+const deleteConfirmButton = document.getElementById("deleteConfirmButton");
 /*
  * Initializes edit functionality for the provided edit buttons.
  * 
@@ -47,26 +47,26 @@ for (let button of editButtons) {
 }
 
 // When the user confirms the deletion in the modal
-deleteConfirmButton.addEventListener('click', () => {
-  // Find the form associated with the delete action
-  const form = document.querySelector(`form[action='${formActionUrl}']`);
-  
-  if (form) {
-    form.submit();  // Submit the form to delete the comment
-  }
+deleteConfirmButton.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent the default action from happening immediately
+  const confirmUrl = deleteConfirm.href; // Get the URL for the deletion
+  const  csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
-  // Close the modal after submission
-  const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-  modal.hide();  // Hide the modal
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  const form = document.querySelector("form");
-  form.addEventListener("submit", function(event) {
-    const submitButton = form.querySelector("[type='submit']");
-    submitButton.disabled = true;  // Disable button after submission
+  fetch(confirmUrl, {
+      method: "POST",  // Send a POST request to the server for deletion
+      headers: {
+          "X-CSRFToken": csrfToken,
+      },
+  }).then(response => {
+      if (response.ok) {
+          window.location.reload(); // Refresh the page to remove the comment
+      } else {
+          alert('There was an error deleting the comment.');
+      }
   });
+  deleteModal.hide();  // Hide the modal after the request is made
 });
+
 
 function showEditForm(commentId) {
   document.getElementById('edit-form-' + commentId).style.display = 'block';

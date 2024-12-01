@@ -187,14 +187,14 @@
                 <div class="card-body">
                     {% if user.is_authenticated %}
                     <h3>Leave a comment:</h3>
-                    <p>Posting as: {{ user.username }}</p>
+                    <p style="color: #a0d333;">Posting as: {{ user.username }}</p>
                     <form id="commentForm" method="post" style="margin-top: 1.3em;">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
                         <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
                     </form>
                     {% else %}
-                    <p>Log in to leave a comment</p>
+                    <p><a href="{% url 'account_login' %}">Log in</a> to leave a comment</p>
                     {% endif %}
                 </div>
             </div>
@@ -214,7 +214,23 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+                <button type="button" id="deleteConfirmButton" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Log in to vote and comment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>You need to log in to interact with this post. Please log in to vote or comment.</p>
+                <a href="{% url 'account_login' %}" class="btn btn-primary">Log in</a>
             </div>
         </div>
     </div>
@@ -222,6 +238,13 @@
 
 
 {% endblock content %}
+<script>
+    
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
 
 {% block extras %}
 <script src="{% static 'js/vote.js' %}"></script>
