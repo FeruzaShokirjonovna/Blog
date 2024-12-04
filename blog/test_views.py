@@ -104,3 +104,28 @@ class TestBlogViews(TestCase):
         self.assertEqual(response.status_code, 302)
         post = Post.objects.get(slug='test-blog-title')
         self.assertNotIn(self.user, post.upvotes.all())
+
+    def test_downvote_post(self):
+        """Test for downvoting a post"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        response = self.client.post(reverse('post_downvote', args=['test-blog-title']))
+        
+        self.assertEqual(response.status_code, 302)
+        post = Post.objects.get(slug='test-blog-title')
+        self.assertIn(self.user, post.downvotes.all())
+        
+        # Check if upvotes were removed if previously upvoted
+        self.assertNotIn(self.user, post.upvotes.all())
+
+    def test_downvote_removal(self):
+        """Test for removing downvote (if already downvoted)"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        self.client.post(reverse('post_downvote', args=['test-blog-title']))
+        response = self.client.post(reverse('post_downvote', args=['test-blog-title']))
+        
+        # Ensure the downvote was removed
+        self.assertEqual(response.status_code, 302)
+        post = Post.objects.get(slug='test-blog-title')
+        self.assertNotIn(self.user, post.downvotes.all())
