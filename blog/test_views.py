@@ -77,3 +77,30 @@ class TestBlogViews(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertFalse(ReadLater.objects.filter(user=self.user, post=self.post).exists())
         self.assertContains(response, 'This post has been removed from your Read Later list.')
+
+    def test_upvote_post(self):
+        """Test for upvoting a post"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        response = self.client.post(reverse('post_upvote', args=['test-blog-title']))
+        
+        self.assertEqual(response.status_code, 302)
+        post = Post.objects.get(slug='test-blog-title')
+        self.assertIn(self.user, post.upvotes.all())
+        
+        # Check if downvotes were removed if previously downvoted
+        self.assertNotIn(self.user, post.downvotes.all())
+
+    def test_upvote_removal(self):
+        """Test for removing upvote (if already upvoted)"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        self.client.post(reverse('post_upvote', args=['test-blog-title']))
+        
+        # Now remove the upvote (should be removed when clicked again)
+        response = self.client.post(reverse('post_upvote', args=['test-blog-title']))
+        
+        # Ensure the upvote was removed
+        self.assertEqual(response.status_code, 302)
+        post = Post.objects.get(slug='test-blog-title')
+        self.assertNotIn(self.user, post.upvotes.all())
