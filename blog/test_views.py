@@ -65,3 +65,15 @@ class TestBlogViews(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertContains(response, 'This post is already in your Read Later list.')
     
+    def test_remove_from_read_later(self):
+        """Test for removing a post from the Read Later list"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        self.client.post(reverse('add_to_read_later', args=['test-blog-title']))
+        
+        response = self.client.post(reverse('remove_from_read_later', args=['test-blog-title']))
+        
+        # Ensure the post was removed
+        self.assertEqual(response.status_code, 302)
+        self.assertFalse(ReadLater.objects.filter(user=self.user, post=self.post).exists())
+        self.assertContains(response, 'This post has been removed from your Read Later list.')
