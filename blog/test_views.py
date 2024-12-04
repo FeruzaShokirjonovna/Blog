@@ -27,14 +27,18 @@ class TestBlogViews(TestCase):
             response.context['comment_form'], CommentForm)
         print(response.context)
 
-    def test_successful_collaboration_request_submission(self):
-        """Test for a user requesting a collaboration"""
+    def test_successful_comment_submission(self):
+        """Test for posting a comment on a post"""
+        self.client.login(
+            username="myUsername", password="myPassword")
         post_data = {
-            'name': 'test name',
-            'email': 'test@email.com',
-            'message': 'test message'
+            'body': 'This is a test comment.'
         }
-        response = self.client.post(reverse('about'), post_data)
+        response = self.client.post(reverse(
+            'post_detail', args=['blog']), post_data)
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            b'Collaboration request received! I endeavour to respond within 2 working days.', response.content)
+            b'Comment submitted and awaiting approval',
+            response.content
+        )
+
