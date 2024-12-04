@@ -7,24 +7,34 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, ReadLater, Comment
 from .forms import CommentForm
 
-#def home(request):
-#    return render(request, 'blog/home.html')  # Render the home template in the blog app
 
-#class PostList(View):
-#    def get(self, request, *args, **kwargs):
-#       queryset = Post.objects.filter(status=1)
-#      return render(request, "index.html", {"posts": queryset})
 class PostList(generic.ListView):
+    '''
+    Returns all published posts in :model:`blog.Post`
+    and displays them in a page of six posts.
+
+    **Template:**
+
+    :template:`templates/index.html`
+    '''
     queryset = Post.objects.filter(author=1)
     template_name = "index.html"
     paginate_by = 6
 
 
 class PostDetail(View):
+    """
+    Display an individual post.
+
+    **Template:**
+
+    :template:`templates/post_detail.html`
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("created_on")
+        comments = post.comments.all().order_by("-created_on")
+        comment_count = post.comments.filter(approved=True).count()
         comment_form = CommentForm()
         upvoted = False
         downvoted = False
@@ -46,7 +56,7 @@ class PostDetail(View):
                 "number_of_upvotes": post.number_of_upvotes(),
                 "number_of_downvotes": post.number_of_downvotes(),
                 "comment_form": comment_form,
-                
+                "comment_count": comment_count,
             },
         )
 
@@ -94,7 +104,17 @@ class PostDetail(View):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+     Display an individual comment for edit.
+
+     
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
+    ``comment_form``
+        An instance of :form:`blog.CommentForm`
     """
     post = get_object_or_404(Post, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -107,7 +127,7 @@ def comment_edit(request, slug, comment_id):
         comment_form = CommentForm(data=request.POST, instance=comment)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.approved = False
+            #comment.approved = False
             comment.save()
             messages.success(request, 'Comment updated successfully and awaiting approval.')
         else:
@@ -119,22 +139,34 @@ def comment_edit(request, slug, comment_id):
 
 @login_required
 def comment_delete(request, slug, comment_id):
-    post = get_object_or_404(Post, slug=slug)
+    """
+    Delete an individual comment.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
+    """
+    queryset = Post.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
-    if comment.author != request.user:
-        messages.error(request, "You can only delete your own comments.")
-    elif request.method == "POST":
+    if comment.author == request.user:
         comment.delete()
-        messages.success(request, 'Comment deleted successfully.')
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.error(request, 'Invalid request method for comment deletion.')
+        messages.add_message(request, messages.ERROR,
+                             'You can only delete your own comments!')
 
-    return redirect('post_detail', slug=post.slug)
-
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 @login_required
 def add_to_read_later(request, post_slug):
+    """
+    Save to read later a favourite post.
+    """
     post = Post.objects.get(slug=post_slug)
     
     # Check if the post is already in the user's "Read Later" list
@@ -153,6 +185,9 @@ def add_to_read_later(request, post_slug):
     
 @login_required
 def read_later(request):
+    """
+    Display list of posts saved for read later.
+    """
     if request.user.is_authenticated:
         read_later_posts = ReadLater.objects.filter(user=request.user)
         return render(request, "read_later.html", {"read_later_posts": read_later_posts})
@@ -161,6 +196,9 @@ def read_later(request):
 
 @login_required
 def remove_from_read_later(request, post_slug):
+    """
+    Remove a post from the list in read later page.
+    """
     # Fetch the post based on the slug
     post = Post.objects.get(slug=post_slug)
     
@@ -174,6 +212,9 @@ def remove_from_read_later(request, post_slug):
     return redirect('read_later')
 
 def post_upvote(request, post_slug):
+    """
+    Enable the logged-in user to vote for the post.
+    """
     post = get_object_or_404(Post, slug=post_slug)
     if request.user.is_authenticated:
         if post.upvotes.filter(id=request.user.id).exists():
@@ -185,6 +226,9 @@ def post_upvote(request, post_slug):
 
 
 def post_downvote(request, post_slug):
+    """
+    Enable the logged-in user to vote for the post.
+    """
     post = get_object_or_404(Post, slug=post_slug)
     if request.user.is_authenticated:
         if post.downvotes.filter(id=request.user.id).exists():

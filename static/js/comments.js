@@ -4,9 +4,9 @@ const commentForm = document.getElementById("commentForm");
 const submitButton = document.getElementById("submitButton");
 
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-outline-danger");
+const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
-const deleteConfirmButton = document.getElementById("deleteConfirmButton");
+
 /*
  * Initializes edit functionality for the provided edit buttons.
  * 
@@ -20,7 +20,7 @@ const deleteConfirmButton = document.getElementById("deleteConfirmButton");
 
 for (let button of editButtons) {
     button.addEventListener("click", (e) => {
-        let commentId = e.target.getAttribute("comment_id");
+        let commentId = e.target.getAttribute("data-comment_id");
         let commentContent = document.getElementById(`comment${commentId}`).innerText;
         commentText.value = commentContent;
         submitButton.innerText = "Update";
@@ -38,40 +38,10 @@ for (let button of editButtons) {
  * - Displays a confirmation modal (`deleteModal`) to prompt 
  * the user for confirmation before deletion.
  */
- for (let button of deleteButtons) {
+for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let commentId = e.target.getAttribute("comment_id");
+        let commentId = e.target.getAttribute("data-comment_id");
         deleteConfirm.href = `delete_comment/${commentId}`;
         deleteModal.show();
     });
-}
-
-// When the user confirms the deletion in the modal
-deleteConfirmButton.addEventListener('click', (event) => {
-  event.preventDefault(); // Prevent the default action from happening immediately
-  const confirmUrl = deleteConfirm.href; // Get the URL for the deletion
-  const  csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
-
-  fetch(confirmUrl, {
-      method: "POST",  // Send a POST request to the server for deletion
-      headers: {
-          "X-CSRFToken": csrfToken,
-      },
-  }).then(response => {
-      if (response.ok) {
-          window.location.reload(); // Refresh the page to remove the comment
-      } else {
-          alert('There was an error deleting the comment.');
-      }
-  });
-  deleteModal.hide();  // Hide the modal after the request is made
-});
-
-
-function showEditForm(commentId) {
-  document.getElementById('edit-form-' + commentId).style.display = 'block';
-}
-
-function hideEditForm(commentId) {
-  document.getElementById('edit-form-' + commentId).style.display = 'none';
 }

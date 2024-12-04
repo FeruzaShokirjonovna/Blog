@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
+import sys
 
 # Import enviroment variables from env.py, if the file exists
 if os.path.isfile("env.py"):
@@ -143,10 +144,9 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL', ''), engine='django.db.backends.postgresql')
 }
 
-#DATABASES = {
-#    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-#}
-
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com"

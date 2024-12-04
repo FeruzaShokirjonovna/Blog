@@ -43,6 +43,11 @@ body {
     background-color: var(--bg-color);
 }
 
+.cards {
+    border-radius: 100px;
+}
+
+
 /*Image Style*/
 .card {
     border: none;
@@ -125,17 +130,8 @@ body {
     height: 100%;
     width: 150%;
     background: var(--bg-color);
-    /*-webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);*/
     z-index: 100;
 }
-/* Post title and excert style on post list
-.card-title {
-    margin-top: 1rem;
-}
- */
-
 
 .post-link {
     text-decoration: none;
@@ -148,7 +144,7 @@ body {
 }
 
 .post-title {
-    margin-top: 40%;
+    margin-top: 20%;
     margin-left: 5%;
     color:var(--text-dark);
 }
@@ -244,6 +240,68 @@ btn-edit:hover,
     color: white;
 }
 
+/* Styling for the Delete Confirmation Modal */
+.modal-content {
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid #e1e1e1; /* Light border for better visibility */
+}
+
+.modal-header {
+    background-color: #f8f9fa; /* Light gray background for the header */
+    color: #343a40; /* Darker color for the text */
+    font-size: 18px; /* Slightly larger text */
+    padding: 15px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.modal-body {
+    font-size: 16px; /* Slightly larger text for readability */
+    color: #495057; /* Darker text color */
+    padding: 20px;
+    line-height: 1.5; /* Improved line height for readability */
+}
+
+.modal-footer {
+    border-top: 1px solid #e1e1e1;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-footer button {
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+    background-color: #f05d5d; /* Slight hover effect on buttons */
+}
+
+.btn-secondary {
+    background-color: #f1f1f1;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* For Buttons inside the modal */
+button:focus, a:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.6);
+}
+
+
 @media (max-width: 768px) {
     /* Stack layout for small screens */
     .masthead .container{
@@ -259,6 +317,7 @@ btn-edit:hover,
 
     .masthead-text h1 {
         font-size: 1.5rem;
+        margin-top: 5%;
     }
 
     .masthead-text p {

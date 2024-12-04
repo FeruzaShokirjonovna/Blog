@@ -31,7 +31,7 @@
 
 <div class="container">
     <div class="row">
-        <!-- Sticky Read Later Button (in a sidebar) -->
+        <!-- Read Later Button -->
         <div class="col-12" style="margin: 20px;">
             {% if user.is_authenticated %}
 
@@ -126,58 +126,31 @@
     <!-- Comments section and comment form -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8 card mb-4 mt-3">
+            <div class="col-md-8 card mb-4 mt-3 ">
                 <h3>Comments:</h3>
                 <div class="card-body">
+                    <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                     {% for comment in comments %}
-                    <div class="p-2 comments
-                {% if not comment.approved and comment.author == user %}
-                faded{% elif not comment.approved %} d-none{% endif %}">
+                    <div
+                        class="p-2 comments{% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
                         <p class="font-weight-bold">
-                            {{ comment.author }} <span class="font-weight-normal">{{ comment.created_on }}</span> wrote:
+                            {{ comment.author }}
+                            <span class="font-weight-normal">
+                                {{ comment.created_on }}
+                            </span> wrote:
                         </p>
-                        <div id="comment{{ comment.id }}" class="comment-body mt-2">{{ comment.body | linebreaks }}
+                        <div id="comment{{ comment.id }}">
+                            {{ comment.body | linebreaks }}
                         </div>
-
-                        <!-- Allow users to delete or edit their own comments -->
-                        {% if user.is_authenticated and comment.author == user %}
-                        <div class="d-flex justify-content-start align-items-center mt-3">
-
-                            <!-- Delete Button -->
-                            <form action="{% url 'comment_delete' post.slug comment.id %}" method="POST" class="me-2">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-outline-danger btn-sm"
-                                    comment_id="{{ comment.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                    <i class="bi bi-trash"></i> Delete
-                                </button>
-                            </form>
-
-                            <!-- Edit Button -->
-                            <button class="btn btn-outline-info btn-sm" comment_id="{{ comment.id }}"
-                                onclick="showEditForm('{{ comment.id }}')">
-                                <i class="bi bi-pencil"></i> Edit
-                            </button>
-
-                            <!-- Edit Form (Hidden by default) -->
-                            <form id="edit-form-{{ comment.id }}" action="{% url 'comment_edit' post.slug comment.id %}"
-                                method="POST" style="display: none; margin: 10px;">
-                                {% csrf_token %}
-                                <div class="mb-2">
-                                    <textarea name="body" rows="4" cols="50" id="id_body"
-                                        class="form-control">{{ comment.body }}</textarea>
-                                </div>
-                                <div class="d-flex justify-content-evenly">
-                                    <button type="submit" class="btn btn-outline-success btn-sm">Save</button>
-                                    <button type="button" class="btn btn-outline-warning btn-sm"
-                                        onclick="hideEditForm('{{ comment.id }}')">Cancel</button>
-                                </div>
-                            </form>
-
-                        </div>
+                        {% if not comment.approved and comment.author == user %}
+                        <p class="approval" style="font-style: italic;">This comment is awaiting approval</p>
                         {% endif %}
-
-
+                        {% if user.is_authenticated and comment.author == user %}
+                        <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+                        <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
+                        {% endif %}
                     </div>
+                    <!-- Our for loop ends here -->
                     {% endfor %}
                 </div>
             </div>
@@ -214,7 +187,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="deleteConfirmButton" class="btn btn-danger">Delete</button>
+                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
@@ -238,8 +211,8 @@
 
 
 {% endblock content %}
-<script>
-    
+<!--Shows pop up message to vote if the user isnot logged in-->
+<script> 
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)

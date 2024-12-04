@@ -11,7 +11,7 @@
             <div class="row">
                 {% for post in object_list %}
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <div class="card mb-4 cards">
                         <div class="card-body">
                             <!-- Image Container-->
                             <div class="image-container">
@@ -32,9 +32,9 @@
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
                             
-                            <p class="card-text text-muted">{{ post.created_on }} <i
-                                    class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }} <i
-                                    class="fa-solid fa-thumbs-down"></i>{{ post.number_of_downvotes }}
+                            <p class="card-text text-muted" style="font-size: small;">{{ post.created_on }} <i
+                                    class="fa-solid fa-thumbs-up" style="color: green; margin: 5px;"></i>{{ post.number_of_upvotes }} <i
+                                    class="fa-solid fa-thumbs-down" style="margin: 5px;"></i>{{ post.number_of_downvotes }}
                             </p>
                         </div>
                     </div>
