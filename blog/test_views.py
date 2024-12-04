@@ -42,3 +42,14 @@ class TestBlogViews(TestCase):
             response.content
         )
 
+    def test_add_to_read_later(self):
+        """Test for adding a post to the Read Later list"""
+        self.client.login(username="myUsername", password="myPassword")
+        
+        # Request to add post to "Read Later"
+        response = self.client.post(reverse('add_to_read_later', args=['test-blog-title']))
+        
+
+        self.assertEqual(response.status_code, 302) 
+        self.assertTrue(ReadLater.objects.filter(user=self.user, post=self.post).exists())
+        self.assertContains(response, 'This post is successfully added to your Read Later list.')
