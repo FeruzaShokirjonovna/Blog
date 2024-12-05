@@ -14,8 +14,8 @@
 
 # **2. Table of content**
 
-- [1. Key project information](https://github.com/FeruzaShokirjonovana/Blog#1key-project-information)
-- [2. Table of content](https://github.com/FeruzaShokirjonovana/Blog#2table-of-content)
+- [1. Key project information](#1-key-project-information)
+- [2. Table of content](#2-table-of-content)
 - [3. User Experience (UX)](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#3-user-experience-ux)
   - [3.1. The Strategy Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#31-the-strategy-plane)
     - [3.1.1. The Idea](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#311-the-idea)
@@ -32,7 +32,7 @@
     - [3.4.1. Wire-frames](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#341-wire-frames)
   - [3.5. The Surface Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#35-the-surface-plane)
     - [3.5.1. Logo](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#351-logo)
-    - [3.5.2. Color pallette](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#352-color-pallette)
+    - [3.5.2. Color palette](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#352-color-palette)
     - [3.5.3. Fonts](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#353-fonts)
 - [4. Features](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#4-features)
   - [4.1. Features used in every HTML template](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#41-features-used-in-every-html-template)
@@ -42,10 +42,10 @@
     - [4.1.4. Error Pages](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#414-error-pages)
   - [4.2. Main Content](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#42-main-content)
     - [4.2.1. Landing Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#421-landing-page)
-    - [4.2.2.  Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#422-news-page)
+    - [4.2.2. News Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#422-news-page)
     - [4.2.3. Post Detail Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-post-detail-page)
-    - [4.2.4. Read Later Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-read-later-page)
-    - [4.2.5. Forms](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#4212-forms)
+    - [4.2.4. Read Later Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#424-read-later-page)
+    - [4.2.5. Forms](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#425-forms)
   - [4.3. Future Features](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#43-future-features)
 - [5. Validation, Testing & Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#5-validation-testing--bugs)
   - [5.1. Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#51-validation)
@@ -57,7 +57,6 @@
     - [5.1.6. WAVE Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#516-wave-validation)
     - [5.1.7. Lighthouse](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#517-lighthouse)
   - [5.2. Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#52-testing)
-    
   - [5.3. Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#53-bugs)
     - [5.3.1. Fixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#531-fixed-bugs)
     - [5.3.2. Unfixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#532-unfixed-bugs)
@@ -71,12 +70,11 @@
     - [6.3.4. Settings.py & file-tree](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#634-settingspy--file-tree)
   - [6.4. Heroku Deployment](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#64-deployment-to-heroku)
 - [7. Technologies & Credits](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#7-technologies--credits)
-  - [7.1. Technologies used to develop and deploy this project]()
+  - [7.1. Technologies used to develop and deploy this project](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#71-technologies-used-to-develop-and-deploy-this-project)
   - [7.2. Requirements.txt](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#73-requirementstxt)
   - [7.3. Credits](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#73-credits)
- 
 
-[Back to top](https://github.com/FeruzaShokirjonovana/Blog#1key-project-information)
+[Back to top](#1-key-project-information)
   
 ---
 
