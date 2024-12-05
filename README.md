@@ -14,67 +14,67 @@
 
 # **2. Table of content**
 
-- [1. Key project information](<#1-key-project-information>)
+[1. Key project information](<#1-key-project-information>)
 - [2. Table of content](<#2-table-of-content>)
-- [3. User Experience (UX)](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#3-user-experience-ux)
-  - [3.1. The Strategy Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#31-the-strategy-plane)
+- [3. User Experience (UX)](<#3-user-experience-ux>)
+  - [3.1. The Strategy Plane](<31-the-strategy-plane>)
     - [3.1.1. The Idea](<#311-the-idea>)
-    - [3.1.2. The Ideal User](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#312-the-ideal-user)
-    - [3.1.3. Site Goals](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#313-site-goals)
-    - [3.1.4. Epics](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#314-epics)
-    - [3.1.5. User stories](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#315-user-stories)
-  - [3.2. The Scope Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#32-the-scope-plane)
-    - [3.2.1. Features to be implemented](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#321-features-to-be-implemented)
-  - [3.3. The Structure Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#33-the-structure-plane)
-    - [3.3.1. Site Maps](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#331-site-maps)
-    - [3.3.2. Database Schemas](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#332-database-schemas)
-  - [3.4. The Skeleton Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#34-the-skeleton-plane)
-    - [3.4.1. Wire-frames](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#341-wire-frames)
-  - [3.5. The Surface Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#35-the-surface-plane)
-    - [3.5.1. Logo](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#351-logo)
-    - [3.5.2. Color palette](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#352-color-palette)
-    - [3.5.3. Fonts](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#353-fonts)
-- [4. Features](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#4-features)
-  - [4.1. Features used in every HTML template](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#41-features-used-in-every-html-template)
-    - [4.1.1. Header](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#411-header)
-    - [4.1.2. Footer](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#412-footer)
-    - [4.1.3. Favicon](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#413-favicon)
-    - [4.1.4. Error Pages](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#414-error-pages)
-  - [4.2. Main Content](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#42-main-content)
-    - [4.2.1. Landing Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#421-landing-page)
-    - [4.2.2. News Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#422-news-page)
-    - [4.2.3. Post Detail Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#423-post-detail-page)
-    - [4.2.4. Read Later Page](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#424-read-later-page)
-    - [4.2.5. Forms](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#425-forms)
-  - [4.3. Future Features](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#43-future-features)
-- [5. Validation, Testing & Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#5-validation-testing--bugs)
-  - [5.1. Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#51-validation)
-    - [5.1.1. Table of Content - Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#511-table-of-content---validation)
-    - [5.1.2. PEP8 Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#512-pep8-validation)
-    - [5.1.3. HTML Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#513-html-validation)
-    - [5.1.4. CSS Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#514-css-validation)
-    - [5.1.5. JS Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#515-js-validation)
-    - [5.1.6. WAVE Validation](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#516-wave-validation)
-    - [5.1.7. Lighthouse](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/validation.md#517-lighthouse)
-  - [5.2. Testing](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#52-testing)
-  - [5.3. Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#53-bugs)
-    - [5.3.1. Fixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#531-fixed-bugs)
-    - [5.3.2. Unfixed Bugs](https://github.com/FeruzaShokirjonovana/Blog/blob/main/docs/bugs.md#532-unfixed-bugs)
-- [6. Deployment](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#6-deployment)
-  - [6.1. Transfer of progress from IDE](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#61-transfer-of-progress-from-ide)
-  - [6.2. Offline cloning](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#62-offline-cloning)
-  - [6.3. Deployment Prerequisites](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#63-deployment-prerequisites)
-    - [6.3.1. Gmail](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#631-gmail)
-    - [6.3.2. ElephantSQL](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#632-elephantsql)
-    - [6.3.3. Cloudinary](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#633-cloudinary)
-    - [6.3.4. Settings.py & file-tree](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#634-settingspy--file-tree)
-  - [6.4. Heroku Deployment](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#64-deployment-to-heroku)
-- [7. Technologies & Credits](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#7-technologies--credits)
-  - [7.1. Technologies used to develop and deploy this project](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#71-technologies-used-to-develop-and-deploy-this-project)
-  - [7.2. Requirements.txt](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#73-requirementstxt)
-  - [7.3. Credits](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#73-credits)
+    - [3.1.2. The Ideal User](<#312-the-ideal-user>)
+    - [3.1.3. Site Goals](<#313-site-goals>)
+    - [3.1.4. Epics](<#314-epics>)
+    - [3.1.5. User stories](<#315-user-stories>)
+  - [3.2. The Scope Plane](<#32-the-scope-plane>)
+    - [3.2.1. Features to be implemented](<#321-features-to-be-implemented>)
+  - [3.3. The Structure Plane](<#33-the-structure-plane>)
+    - [3.3.1. Site Maps](<#331-site-maps>)
+    - [3.3.2. Database Schemas](<#332-database-schemas>)
+  - [3.4. The Skeleton Plane](<#34-the-skeleton-plane>)
+    - [3.4.1. Wire-frames](<#341-wire-frames>)
+  - [3.5. The Surface Plane](<#35-the-surface-plane>)
+    - [3.5.1. Logo](<#351-logo>)
+    - [3.5.2. Color palette](<#352-color-palette>)
+    - [3.5.3. Fonts](<#353-fonts>)
+- [4. Features](<#4-features>)
+  - [4.1. Features used in every HTML template](<#41-features-used-in-every-html-template>)
+    - [4.1.1. Header](<#411-header>)
+    - [4.1.2. Footer](<#412-footer>)
+    - [4.1.3. Favicon](<#413-favicon>)
+    - [4.1.4. Error Pages](<#414-error-pages>)
+  - [4.2. Main Content](<#42-main-content>)
+    - [4.2.1. Landing Page](<#421-landing-page>)
+    - [4.2.2. News Page](<#422-news-page>)
+    - [4.2.3. Post Detail Page](<#423-post-detail-page>)
+    - [4.2.4. Read Later Page](<#424-read-later-page>)
+    - [4.2.5. Forms](<#425-forms>)
+  - [4.3. Future Features](<#43-future-features>)
+- [5. Validation, Testing & Bugs](<#5-validation-testing--bugs>)
+  - [5.1. Validation](<#51-validation>)
+    - [5.1.1. Table of Content - Validation](<#511-table-of-content---validation>)
+    - [5.1.2. PEP8 Validation](<#512-pep8-validation>)
+    - [5.1.3. HTML Validation](<#513-html-validation>)
+    - [5.1.4. CSS Validation](<#514-css-validation>)
+    - [5.1.5. JS Validation](<#515-js-validation>)
+    - [5.1.6. WAVE Validation](<#516-wave-validation>)
+    - [5.1.7. Lighthouse](<#517-lighthouse>)
+  - [5.2. Testing](<#52-testing>)
+  - [5.3. Bugs](<#53-bugs>)
+    - [5.3.1. Fixed Bugs](<#531-fixed-bugs>)
+    - [5.3.2. Unfixed Bugs](<#532-unfixed-bugs>)
+- [6. Deployment](<#6-deployment>)
+  - [6.1. Transfer of progress from IDE](<#61-transfer-of-progress-from-ide>)
+  - [6.2. Offline cloning](<#62-offline-cloning>)
+  - [6.3. Deployment Prerequisites](<#63-deployment-prerequisites>)
+    - [6.3.1. Gmail](<#631-gmail>)
+    - [6.3.2. ElephantSQL](<#632-elephantsql>)
+    - [6.3.3. Cloudinary](<#633-cloudinary>)
+    - [6.3.4. Settings.py & file-tree](<#634-settingspy--file-tree>)
+  - [6.4. Heroku Deployment](<#64-deployment-to-heroku>)
+- [7. Technologies & Credits](<#7-technologies--credits>)
+  - [7.1. Technologies used to develop and deploy this project](<#71-technologies-used-to-develop-and-deploy-this-project>)
+  - [7.2. Requirements.txt](<#73-requirementstxt>)
+  - [7.3. Credits](<#73-credits>)
 
-[Back to top](#1-key-project-information)
+[Back to top](<#1-key-project-information>)
   
 ---
 
@@ -164,18 +164,39 @@ Following schema shows intended database structure:
 
 - Primary Color (#763ae0): This vibrant shade of purple is eye-catching and energetic, serving as the primary color to draw attention to important elements on the website
 
+- Primary Color Dark (#2002b8): A deeper, darker shade of purple that complements the primary color. This hue can be used for accents or to highlight hover effects, giving the design depth and contrast.
+
 -Secondary Color (#a0d333): This soft green hue complements the primary color palette, bringing a refreshing and natural feel to the design
 
-- Background Color (#FFF5E1): This light cream or ivory tone provides a clean and neutral background for the website, ensuring readability and allowing other colors to stand out effectively.
+Background Color (#fcf9f2): A light, almost off-white cream color that serves as the neutral background for the website. It ensures readability and allows other colors to pop without overwhelming the user. This soft tone helps create a pleasant, warm environment for the site.
 
 - Text Dark (#333333): A dark gray color, perfect for body text or any content where readability is crucial.
 
-- Text Light (#767268): A lighter shade of gray, suitable for secondary text or elements where a softer contrast is desired
+- Text Light (#767268): A lighter shade of gray, suitable for secondary text or elements where a softer contrast is desired.
+
+This balanced color palette will create an elegant, readable, and visually appealing design for the website.
+
 
 ### 3.5.3. Fonts
 [Google Fonts](https://fonts.google.com/) site was used to pick the best typography style. The most importance was given to balance between style and readability. As a developer I needed to ensure that all text is displayed clear.
 
 ### 3.5.4. Icons and pictures
+
+The website integrates various icons and images to enhance the user interface and facilitate easy interaction. The following sections outline how these visual elements are utilized:
+
+- Voting Icons
+Icons Used: The voting buttons feature circular icons that represent user interactions with content. These are designed to be simple and easily identifiable.
+  - Upvote Icon: A thumbs-up icon in a green circle to represent positive feedback.
+  - Downvote Icon: A thumbs-down icon in a red circle to indicate negative feedback.
+-Design Details: These icons are circular and visually stand out, making it clear where users can vote on content.
+
+- Comment Icons
+Icons Used: The comment bubble icons appear next to posts, representing the ability to comment on or reply to content.
+=Design Details: The icons are simple and round, placed near the comment sections for easy access.
+
+- Images for Content: Various images are used to complement articles, posts, and user profiles. These images are strategically placed to provide visual interest and context.
+
+[Back](<#2-table-of-content>)
 
 # **4. Features**
 
@@ -313,12 +334,8 @@ The following custom error pages were created :
 - To log in, the user has to enter their username and password.
 - If the username and/or password are incorrect, the form is loaded again, informing the user about the error.
 
+[Back](<#2-table-of-content>)
 
-## **4.2.6. Additional Features**
-
-Features that could be implemented in the future:
-- Search bar: Create a search bar to make users to be able to use search function through Posts to quickly find what They are looking for.
-- See who else Voted: Create a functionality to make the users to see who else upvoted/downvoted Posts to see who else has the same opinion.
 
 # **5. Validation, Testing & Bugs**
 
@@ -446,6 +463,9 @@ EMAIL_USE_TLS = True`
   - Optionally, you can enable automatic deploys
   - See the deployment log - if the deployment was successful, you will be prompted with option to see live page  
 
+[Back](<#2-table-of-content>)
+
+
 ## **7. Technologies & Credits**
 
 ### 7.1. Technologies used to develop and deploy this project
@@ -489,3 +509,4 @@ sqlparse==0.5.0 - library for parsing SQL statements
 - [**FavIcon.io**](https://favicon.io/favicon-converter/) - used to compress favicon
 - [**W3Schools**](https://www.w3schools.com/) - useful information and cheat sheets
 
+[Back](<#2-table-of-content>)
