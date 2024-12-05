@@ -183,18 +183,34 @@ Following schema shows intended database structure:
 
 ### **4.1.1 Header**
 
+![Header](static/images/not-logged-header.png)
+
+
 - It is fully responsive and includes the Baby Care blog name on the left and member links and blog slogan on the right.
 
 - The blog name is wrapped in a link and can be used to navigate to the homepage.
 
+- The logo is wrapped in a link and can be used to navigate to the homepage.
+
+- The navigation bar is identical on each page to allow for easy navigation from page to page across all devices.
+
+![Header Authenticated](static/images/logged-in-header.png)
+
 - After logging in, the links on the right side are replaced by the Read Later and a log-out button.
 
+- The user can always see if they are logged in by their username being displayed. 
+
+
 ### **4.1.2 Footer**
+
+![Footer](static/images/footer.png)
 
 - Every page has a footer at the bottom of the page.
 - The footer shows the copyright text and links to four different social media websites. Each link opens in a new tab.
 
 ### **4.1.3 Favicon**
+
+![Favicon](static/images/favicon.png)
 
 - Every template in this project is equipped with Favicon. This is to ease navigation for user in case of more tabs opened. 
 
@@ -212,21 +228,64 @@ The following custom error pages were created :
 
 ### **4.2.1. Landing Page**
 
+![Home](static/images/home-page.png)
+
 - **Template File :** `index.html` - extends `base.html`
 - Contains list of posts.
-- Provides user with all Posts published along with name of creator, date created and a snippet of Post body. Also information of amount of votes and comments is provided to both logged in and not logged in users 
+- Provides user with all Posts published along with name of creator, date created and a snippet of Post body. Also information of amount of votes is provided to both logged in and not logged in users 
 
-### **4.2.3. News Detail Page**
+### **4.2.3. Post Detail Page**
+
+![Post Detail page](static/images/post-detail-page.png)
 
 - **Template File :** `post_detail.html` - extends `base.html`
-- **User :** Provides user with selected Post along with name of creator, date created and full Post body. User sees votes and amount of comments. Logged in user has ability to comment and vote.
+- Every article on the homepage can be opened by clicking on it.
+- Provides the user with selected Post along with name of creator, date created and full Post body.
+- Logged in user can save the post to read later via Read Later button.
+- The User sees votes and amount of comments. 
+- Logged in user has ability to comment and vote.
+
+## Comments
+![Comment Section](static/images/comment-form.png)
+- Every article has a comment section on the detail page.
+- At the top of the section, a title shows the number of comments.
+- If the user is not authenticated, a hint shows that the user needs to log in or register to join/start a discussion.
+
+### Add Comment
+![Add Comment](static/images/comment-form.png)
+- If the user is authenticated, a comment form is displayed instead of the hint.
+- The user can enter the content of the comment and post it by clicking the button.
+
+### Edit Comment
+![Edit Comment](static/images/edit-comment.png)
+- The user can edit their comment by clicking the edit button in the top right corner.
+- The comment form turns into an edit form, instead of save button displays 'Update' button allowing the user to edit the comment.
+- To save the changes, the user can click on the Update button.
+- A message notifies the user about the successful edit.
+
+### Delete Comment
+![Delete Comment](static/images/delete-confirm-message.png)
+- The user can remove their comments permanently from the conversation.
+- To delete a comment, the user can click on the delete button.
+- Before deleting, the user has to confirm their decision, otherwise, the comment will not be deleted.
+- A message notifies the user about the successful deletion.
+
 
 ### **4.2.4. Read Later Page**
 
+![Read Later page](static/images/read-later-page.png)
+
 - **Template File :** `read_later.html` - extends `base.html`
-- **User :** Enables logged in user to read bookmarked posts. If there is no bookmarked posts, 
+- Enables logged in user to see the list of bookmarked posts. 
+- If there is no bookmarked posts, displays that there no posts to read later.
+
+![Read Later page 2](static/images/no-bookmarked-posts-page.png)
 
 ### **4.2.5. Forms**
+
+![Sign-in page](static/images/sign-in-page.png)
+![Sign out page](static/images/sign-out-page.png)
+![Login page](static/images/login-page.png)
 
 - **App :** `AllAuth` extension
 - **Template File :** `*.html` in `./templates/account` - extends `base.html`
