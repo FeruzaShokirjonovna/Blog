@@ -14,11 +14,11 @@
 
 # **2. Table of content**
 
-- [1. Key project information](#1-key-project-information)
-- [2. Table of content](#2-table-of-content)
+- [1. Key project information](<#1-key-project-information>)
+- [2. Table of content](<#2-table-of-content>)
 - [3. User Experience (UX)](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#3-user-experience-ux)
   - [3.1. The Strategy Plane](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#31-the-strategy-plane)
-    - [3.1.1. The Idea](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#311-the-idea)
+    - [3.1.1. The Idea](<#311-the-idea>)
     - [3.1.2. The Ideal User](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#312-the-ideal-user)
     - [3.1.3. Site Goals](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#313-site-goals)
     - [3.1.4. Epics](https://github.com/FeruzaShokirjonovana/Blog/blob/main/README.md#314-epics)
@@ -283,14 +283,42 @@ The following custom error pages were created :
 
 ### **4.2.5. Forms**
 
-![Sign-in page](static/images/sign-in-page.png)
-![Sign out page](static/images/sign-out-page.png)
-![Login page](static/images/login-page.png)
-
 - **App :** `AllAuth` extension
 - **Template File :** `*.html` in `./templates/account` - extends `base.html`
-- **User :** Forms do interact with user. They are designed to be clear and to the point, always in center of the screen. 
+- **User :** Forms do interact with the user. They are designed to be clear and to the point, always in center of the screen. 
 
+![Sign-in page](static/images/sign-in-page.png)
+
+- If a user wants to use the features reserved for members of the website, such as commenting and voting, they have to register.
+- The user can reach the registration page by the link in the navigation bar.
+- To become a member, the user has to enter a username, email, and password.
+- If the provided data is valid, the user is automatically logged in and redirected to the page they were on before.
+
+
+![Register Form Error](static/images/sign-in-error.png)
+
+- If the entered data is invalid when sent off, the form loads again with an error message. 
+- The form data, apart from the password, is preserved and the invalid fields are highlighted with an error message below.
+- After fixing the invalid fields and reentering the password, the user can send the form again.
+
+![Sign out page](static/images/sign-out-page.png)
+
+- If authenticated user want to log out, the member can reach the logout page by the link in the navigation bar.
+- Clicking signout button the member can easily sign out from the website.
+
+![Login page](static/images/login-page.png)
+
+- If an unauthenticated member wants to use the features reserved for members of the website such as commenting and voting, they have to log in.
+- The member can reach the login page by the link in the navigation bar.
+- To log in, the user has to enter their username and password.
+- If the username and/or password are incorrect, the form is loaded again, informing the user about the error.
+
+
+## **4.2.6. Additional Features**
+
+Features that could be implemented in the future:
+- Search bar: Create a search bar to make users to be able to use search function through Posts to quickly find what They are looking for.
+- See who else Voted: Create a functionality to make the users to see who else upvoted/downvoted Posts to see who else has the same opinion.
 
 # **5. Validation, Testing & Bugs**
 
