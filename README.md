@@ -42,10 +42,9 @@
     - [4.1.4. Error Pages](<#414-error-pages>)
   - [4.2. Main Content](<#42-main-content>)
     - [4.2.1. Landing Page](<#421-landing-page>)
-    - [4.2.2. News Page](<#422-news-page>)
-    - [4.2.3. Post Detail Page](<#423-post-detail-page>)
-    - [4.2.4. Read Later Page](<#424-read-later-page>)
-    - [4.2.5. Forms](<#425-forms>)
+    - [4.2.2. Post Detail Page](<#422-post-detail-page>)
+    - [4.2.3. Read Later Page](<#423-read-later-page>)
+    - [4.2.4. Forms](<#424-forms>)
   - [4.3. Future Features](<#43-future-features>)
 - [5. Validation, Testing & Bugs](<#5-validation-testing--bugs>)
   - [5.1. Validation](<#51-validation>)
@@ -166,9 +165,9 @@ Following schema shows intended database structure:
 
 - Primary Color Dark (#2002b8): A deeper, darker shade of purple that complements the primary color. This hue can be used for accents or to highlight hover effects, giving the design depth and contrast.
 
--Secondary Color (#a0d333): This soft green hue complements the primary color palette, bringing a refreshing and natural feel to the design
+- Secondary Color (#a0d333): This soft green hue complements the primary color palette, bringing a refreshing and natural feel to the design
 
-Background Color (#fcf9f2): A light, almost off-white cream color that serves as the neutral background for the website. It ensures readability and allows other colors to pop without overwhelming the user. This soft tone helps create a pleasant, warm environment for the site.
+- Background Color (#fcf9f2): A light, almost off-white cream color that serves as the neutral background for the website. It ensures readability and allows other colors to pop without overwhelming the user. This soft tone helps create a pleasant, warm environment for the site.
 
 - Text Dark (#333333): A dark gray color, perfect for body text or any content where readability is crucial.
 
@@ -185,14 +184,14 @@ This balanced color palette will create an elegant, readable, and visually appea
 The website integrates various icons and images to enhance the user interface and facilitate easy interaction. The following sections outline how these visual elements are utilized:
 
 - Voting Icons
-Icons Used: The voting buttons feature circular icons that represent user interactions with content. These are designed to be simple and easily identifiable.
+- Icons Used: The voting buttons feature circular icons that represent user interactions with content. These are designed to be simple and easily   identifiable.
   - Upvote Icon: A thumbs-up icon in a green circle to represent positive feedback.
   - Downvote Icon: A thumbs-down icon in a red circle to indicate negative feedback.
 -Design Details: These icons are circular and visually stand out, making it clear where users can vote on content.
 
 - Comment Icons
-Icons Used: The comment bubble icons appear next to posts, representing the ability to comment on or reply to content.
-=Design Details: The icons are simple and round, placed near the comment sections for easy access.
+  - Icons Used: The comment bubble icons appear next to posts, representing the ability to comment on or reply to content.
+  - Design Details: The icons are simple and round, placed near the comment sections for easy access.
 
 - Images for Content: Various images are used to complement articles, posts, and user profiles. These images are strategically placed to provide visual interest and context.
 
@@ -255,7 +254,7 @@ The following custom error pages were created :
 - Contains list of posts.
 - Provides user with all Posts published along with name of creator, date created and a snippet of Post body. Also information of amount of votes is provided to both logged in and not logged in users 
 
-### **4.2.3. Post Detail Page**
+### **4.2.2. Post Detail Page**
 
 ![Post Detail page](static/images/post-detail-page.png)
 
@@ -292,7 +291,7 @@ The following custom error pages were created :
 - A message notifies the user about the successful deletion.
 
 
-### **4.2.4. Read Later Page**
+### **4.2.3. Read Later Page**
 
 ![Read Later page](static/images/read-later-page.png)
 
@@ -302,7 +301,7 @@ The following custom error pages were created :
 
 ![Read Later page 2](static/images/no-bookmarked-posts-page.png)
 
-### **4.2.5. Forms**
+### **4.2.4. Forms**
 
 - **App :** `AllAuth` extension
 - **Template File :** `*.html` in `./templates/account` - extends `base.html`
@@ -346,7 +345,13 @@ Validation is documented separately in [validation.md](/docs/validation.md) file
 
 ## **5.2. Testing**
 
-Tested for responsiveness manually.
+In this project, I used two types of testing: Manual explorative testing and semi-automated tests.
+
+## Manual Testing
+- Throughout the development process, I manually tested every page and feature exhaustively.   
+[List of manual tests](docs/testing/manual_testing.md)
+- When I finished creating my MVP, I shared the website with multiple users to confirm its functionality and to get feedback on their experience.
+
 
 ## **5.3. Bugs**
 
