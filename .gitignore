@@ -8,3 +8,7 @@ node_modules/
 .github/
 cloudinary_python.txt
 blog/fixtures/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

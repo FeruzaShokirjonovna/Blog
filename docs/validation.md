@@ -1,13 +1,13 @@
 # **5.1. Validation**
 
 ## **5.1.1. Table of Content - Validation**
-- [5.1.1. Table of Content - Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#511-table-of-content---validation)
-- [5.1.2. PEP8 Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#512-pep8-validation)
-- [5.1.3. HTML Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#513-html-validation)
-- [5.1.4. CSS Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#514-css-validation)
-- [5.1.5. JS Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#515-js-validation)
-- [5.1.6. WAVE Validation](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#516-wave-validation)
-- [5.1.7. Lighthouse](https://github.com/FeruzaShokirjonovna/Blog/blob/main/docs/validation.md#517-lighthouse)
+- [5.1.1. Table of Content - Validation](<#511-table-of-content-validation>)
+- [5.1.2. PEP8 Validation](<#512-pep8-validation>)
+- [5.1.3. HTML Validation](<#513-html-validation>)
+- [5.1.4. CSS Validation](<#514-css-validation>)
+- [5.1.5. JS Validation](<#515-js-validation>)
+- [5.1.6. WAVE Validation](<#516-wave-validation>)
+- [5.1.7. Lighthouse](<#517-lighthouse>)
 
 ## **5.1.2. PEP8 Validation**
 

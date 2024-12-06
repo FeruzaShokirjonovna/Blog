@@ -5,10 +5,9 @@
 - **Description :** This Portfolio Project 4 website called **Baby Care** is a site of imaginary blog, offers news in form of blog from about being Mom and useful tips for mothers. The site is presenting to its visitors with variety of details as blog style functions.
 - **Key project goal :** To familiarize visitors of this page with **Baby Care** blog
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are Mothers that are using search engines for baby care tips and tricks, advices.
-- **Live version :** Live version of **Baby Care** page can be viewed at [Baby Care](https://babycare.herokuapp.com/).
+- **Live version :** Live version of **Baby Care** page can be viewed at https://babycare-6f68f42d9b15.herokuapp.com/.
 - **Developer :** [Feruza Orifjonova](https://github.com/FeruzaShokirjonovna/)
 
-![Mockup]()
 
 ---
 
@@ -45,7 +44,6 @@
     - [4.2.2. Post Detail Page](<#422-post-detail-page>)
     - [4.2.3. Read Later Page](<#423-read-later-page>)
     - [4.2.4. Forms](<#424-forms>)
-  - [4.3. Future Features](<#43-future-features>)
 - [5. Validation, Testing & Bugs](<#5-validation-testing--bugs>)
   - [5.1. Validation](<#51-validation>)
     - [5.1.1. Table of Content - Validation](<#511-table-of-content---validation>)
@@ -57,8 +55,6 @@
     - [5.1.7. Lighthouse](<#517-lighthouse>)
   - [5.2. Testing](<#52-testing>)
   - [5.3. Bugs](<#53-bugs>)
-    - [5.3.1. Fixed Bugs](<#531-fixed-bugs>)
-    - [5.3.2. Unfixed Bugs](<#532-unfixed-bugs>)
 - [6. Deployment](<#6-deployment>)
   - [6.1. Transfer of progress from IDE](<#61-transfer-of-progress-from-ide>)
   - [6.2. Offline cloning](<#62-offline-cloning>)
@@ -352,10 +348,23 @@ In this project, I used two types of testing: Manual explorative testing and sem
 [List of manual tests](docs/testing/manual_testing.md)
 - When I finished creating my MVP, I shared the website with multiple users to confirm its functionality and to get feedback on their experience.
 
+### Django Tests
+- For all my views, models, and forms, I implemented tests with the Django framework.
+  - The tests cover the functionality of all pages and the elements within.
+  - The tests use a separate test database instead of the production database.
+- The Django framework includes a testing library, so no further setup is necessary.
+- I started the Django tests with the command `python3 manage.py test`.
+
+### Results
+
+Test results from the Django tests: All 10 tests passed.  
+
+![Django Test Results](static/images/django-tests.png)
+
 
 ## **5.3. Bugs**
 
-Bugs is documented separately in [validation.md](/docs/bugs/bugs.md.md) file.
+Bugs is documented separately in [bugs.md](/docs/bugs/bugs.md) file.
 
 # **6. Deployment**
 

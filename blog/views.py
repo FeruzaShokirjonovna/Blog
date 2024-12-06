@@ -175,7 +175,7 @@ def add_to_read_later(request, post_slug):
     if existing_post.exists():
         # If the post is already in "Read Later", remove it
         existing_post
-        messages.success(request, "This post is already in your Read Later list.")
+        messages.info(request, "This post is already in your Read Later list.")
     else:
         # If the post is not in "Read Later", add it
         ReadLater.objects.create(user=request.user, post=post)

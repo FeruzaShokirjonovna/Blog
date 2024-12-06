@@ -20,7 +20,6 @@
 | Try to access the "Read Later" list without being authenticated | Redirected to the login page | ✅ PASS          |
 | Add a post to "Read Later" for an unauthenticated user | Display message to login for adding to read later | ✅ PASS          |
 | Remove a post from "Read Later" when no posts exist | The page refreshes without errors and remains empty | ✅ PASS          |
-
 | Upvoting an article               | Upvote count increases                                                | ✅ PASS          |
 | Downvoting an article             | Downvote count decreases                                              | ✅ PASS          |
 | **Commenting**                    |                                                                       |             |
