@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 document.addEventListener("DOMContentLoaded", function () {
     const upvoteForms = document.querySelectorAll(".btn-upvote");
     const downvoteForms = document.querySelectorAll(".btn-downvote");

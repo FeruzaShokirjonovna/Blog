@@ -5,7 +5,7 @@
 - **Description :** This Portfolio Project 4 website called **Baby Care** is a site of imaginary blog, offers news in form of blog from about being Mom and useful tips for mothers. The site is presenting to its visitors with variety of details as blog style functions.
 - **Key project goal :** To familiarize visitors of this page with **Baby Care** blog
 - **Audience :** There's no age or any other limit to audience of this page. Target audience are Mothers that are using search engines for baby care tips and tricks, advices.
-- **Live version :** Live version of **Baby Care** page can be viewed at https://babycare-6f68f42d9b15.herokuapp.com/.
+- **Live version :** Live version of **Baby Care** page can be viewed at https://babycare-6f68f42d9b15.herokuapp.com/. 
 - **Developer :** [Feruza Orifjonova](https://github.com/FeruzaShokirjonovna/)
 
 
@@ -51,8 +51,6 @@
     - [5.1.3. HTML Validation](<#513-html-validation>)
     - [5.1.4. CSS Validation](<#514-css-validation>)
     - [5.1.5. JS Validation](<#515-js-validation>)
-    - [5.1.6. WAVE Validation](<#516-wave-validation>)
-    - [5.1.7. Lighthouse](<#517-lighthouse>)
   - [5.2. Testing](<#52-testing>)
   - [5.3. Bugs](<#53-bugs>)
 - [6. Deployment](<#6-deployment>)

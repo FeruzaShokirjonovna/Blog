@@ -4,7 +4,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.49.0",
-    "@types/node": "^22.10.1"
+    "@types/node": "^22.10.1",
+    "jshint": "^2.13.6"
   },
   "scripts": {}
 }

@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 const editButtons = document.getElementsByClassName("btn-edit");
 const commentText = document.getElementById("id_body");
 const commentForm = document.getElementById("commentForm");
@@ -34,7 +35,7 @@ for (let button of editButtons) {
  * For each button in the `deleteButtons` collection:
  * - Retrieves the associated comment's ID upon click.
  * - Updates the `deleteConfirm` link's href to point to the 
- * deletion endpoint for the specific comment.
+ * - deletion endpoint for the specific comment.
  * - Displays a confirmation modal (`deleteModal`) to prompt 
  * the user for confirmation before deletion.
  */
