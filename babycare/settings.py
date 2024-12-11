@@ -137,21 +137,23 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgres',
         'NAME': BASE_DIR / 'front_boxer_squid_914839',
     }
- }
+}
 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL', ''), engine='django.db.backends.postgresql')
-}
+    'default': dj_database_url.parse(
+        os.environ.get(
+            'DATABASE_URL',
+            ''),
+        engine='django.db.backends.postgresql')}
 
 if 'test' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-    
+
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
     "https://*.herokuapp.com"
 ]
-
 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

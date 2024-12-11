@@ -11,15 +11,15 @@
 
 ## **5.1.2. PEP8 Validation**
 
-- **Task :** To ensure `*.py` files are compliant with PEP8 standards.
+- **Task :** To ensure `*.py` files are compliant with PEP8 standards using autopep8.
 - **Tools :** 
-  - [Black](https://black.readthedocs.io/en/stable/) - PY linter and formatter
+  - [autopep8](https://github.com/hhatto/autopep8) - PY linter and formatter
   - [CI Python Linter](https://pep8ci.herokuapp.com/) - Visualizing PY linter
 - **Method :** 
-   - Install `Black` using `pip install black` in terminal
-   - Use command `black --line-length 79 DIRECTORY_NAME/` to format `*.py` files in the selected directory or use `black --line-length 79 .` to format all files
-   - See in the terminal window result of this operation *( Appendix 51 )*
-   - Double check the results in `CI Python Linter` by copying and pasting the Python code as black doesn't wrap lines of comments. See result on the right hand side of the input field 
+   - Install `autopep8` using `pip install autopep8` in terminal
+   - Use command `autopep8 --in-place --aggressive --aggressive DIRECTORY_NAME/` to format `*.py` files in the selected directory. 
+   - See in the terminal window result of this operation 
+   - Double check the results in `CI Python Linter` by copying and pasting the Python code as autopep8 doesn't wrap lines of comments. See result on the right hand side of the input field .
 - **Results :**
 
 ![Linter Result](/docs/validation/linter_validation.png)

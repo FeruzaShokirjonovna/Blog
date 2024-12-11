@@ -30,6 +30,7 @@ class PostDetail(View):
 
     :template:`templates/post_detail.html`
     """
+
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -73,20 +74,23 @@ class PostDetail(View):
             downvoted = True
 
         if request.method == "POST":
-            
+
             comment_form = CommentForm(data=request.POST)
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.author = request.user
                 comment.post = post
                 comment.save()
-                messages.add_message(request, messages.SUCCESS,'Comment submitted and awaiting approval')
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    'Comment submitted and awaiting approval')
             else:
                 print(comment_form.errors)  # Log the validation errors
                 return redirect('post_detail', slug=post.slug)
 
         comment_form = CommentForm
-            
+
         return render(
             request,
             "post_detail.html",
@@ -102,11 +106,12 @@ class PostDetail(View):
             },
         )
 
+
 def comment_edit(request, slug, comment_id):
     """
      Display an individual comment for edit.
 
-     
+
     **Context**
 
     ``post``
@@ -127,15 +132,18 @@ def comment_edit(request, slug, comment_id):
         comment_form = CommentForm(data=request.POST, instance=comment)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            #comment.approved = False
+            # comment.approved = False
             comment.save()
-            messages.success(request, 'Comment updated successfully and awaiting approval.')
+            messages.success(
+                request, 'Comment updated successfully and awaiting approval.')
         else:
-            messages.error(request, 'Error updating comment. Please check the form.')
+            messages.error(
+                request, 'Error updating comment. Please check the form.')
     else:
         comment_form = CommentForm(instance=comment)
 
     return redirect('post_detail', slug=post.slug)
+
 
 @login_required
 def comment_delete(request, slug, comment_id):
@@ -162,16 +170,17 @@ def comment_delete(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
+
 @login_required
 def add_to_read_later(request, post_slug):
     """
     Save to read later a favourite post.
     """
     post = Post.objects.get(slug=post_slug)
-    
+
     # Check if the post is already in the user's "Read Later" list
     existing_post = ReadLater.objects.filter(user=request.user, post=post)
-    
+
     if existing_post.exists():
         # If the post is already in "Read Later", remove it
         existing_post
@@ -179,10 +188,13 @@ def add_to_read_later(request, post_slug):
     else:
         # If the post is not in "Read Later", add it
         ReadLater.objects.create(user=request.user, post=post)
-        messages.success(request, "This post is successfully added to your Read Later list.")
+        messages.success(
+            request,
+            "This post is successfully added to your Read Later list.")
     # Redirect to the post detail page to refresh the state
     return redirect('post_detail', slug=post.slug)
-    
+
+
 @login_required
 def read_later(request):
     """
@@ -190,9 +202,12 @@ def read_later(request):
     """
     if request.user.is_authenticated:
         read_later_posts = ReadLater.objects.filter(user=request.user)
-        return render(request, "read_later.html", {"read_later_posts": read_later_posts})
+        return render(
+            request, "read_later.html", {
+                "read_later_posts": read_later_posts})
     else:
         return render(request, "read_later.html", {"read_later_posts": []})
+
 
 @login_required
 def remove_from_read_later(request, post_slug):
@@ -201,15 +216,18 @@ def remove_from_read_later(request, post_slug):
     """
     # Fetch the post based on the slug
     post = Post.objects.get(slug=post_slug)
-    
+
     # Remove the post from the ReadLater list for the user
     ReadLater.objects.filter(user=request.user, post=post).delete()
-    
+
     # Display a success message
-    messages.success(request, "This post has been removed from your Read Later list.")
-    
+    messages.success(
+        request,
+        "This post has been removed from your Read Later list.")
+
     # Redirect back to the Read Later page
     return redirect('read_later')
+
 
 def post_upvote(request, post_slug):
     """
@@ -232,7 +250,8 @@ def post_downvote(request, post_slug):
     post = get_object_or_404(Post, slug=post_slug)
     if request.user.is_authenticated:
         if post.downvotes.filter(id=request.user.id).exists():
-            post.downvotes.remove(request.user)  # Remove the downvote if it exists
+            # Remove the downvote if it exists
+            post.downvotes.remove(request.user)
         else:
             post.downvotes.add(request.user)  # Add the downvote
             post.upvotes.remove(request.user)  # Remove upvote if it exists
