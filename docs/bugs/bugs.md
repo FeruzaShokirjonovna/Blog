@@ -8,8 +8,6 @@ Directly used imported view classes and functions: Use PostList, PostDetail, rea
 
 - After passing html validator, the errors below found:
 
-![HTML bug](static/images/html-validator-bug.png)
-
     - The values Home, Signup, and Login are not valid values for the aria-current attribute. 
 - Fix: need to replace the incorrect values (Home, Signup, Login) with page, as these values are referring to the current page in the navigation.
 
