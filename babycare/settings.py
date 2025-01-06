@@ -132,19 +132,19 @@ WSGI_APPLICATION = "babycare.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgres',
-        'NAME': BASE_DIR / 'front_boxer_squid_914839',
-    }
-}
+#DATABASES = {
+    #'default': {
+    #    'ENGINE': 'django.db.backends.postgres',
+    #    'NAME': BASE_DIR / 'front_boxer_squid_914839',
+    #}
+#}
 
 
 DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get(
             'DATABASE_URL',
-            ''),
+        ),
         engine='django.db.backends.postgresql')}
 
 if 'test' in sys.argv:
